@@ -38,7 +38,7 @@ This project aims to create a fully functional website for the Department of IT 
 
   - **Role**: Frontend Developer
   - **Bio**: Naveed specializes in crafting intuitive user interfaces and enhancing user experience through frontend technologies. With a keen eye for design and functionality, he ensures seamless interactions on our applications.
-  - **Portfolio/GitHub**: [GitHub](https://github.com/naveedsnr)
+  - **Portfolio/GitHub**: [Naveed's Porfolio](https://naveedsnr.vercel.app) / [GitHub](https://github.com/Naveed-SNR)
 
 - **Ikhlas**
 
@@ -53,4 +53,4 @@ This project aims to create a fully functional website for the Department of IT 
 
 ## Contact
 
-For any inquiries, please reach out to [dev.me6@gmail.com] [naveedsnr@gmail.com] [mohammadikhlas99@gmail.com].
+For any inquiries, please reach out to [dev.me6@gmail.com] [sheikhnaveed3660@gmail.com] [mohammadikhlas99@gmail.com].

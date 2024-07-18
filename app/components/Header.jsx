@@ -14,7 +14,7 @@ import Exam from '../../public/Exam.svg';
 
 export default function Header() {
   
-  const initialCardData  = [
+  const initialCardData = React.useMemo(() => [
     {
       id: 1,
       image: Coding,
@@ -39,7 +39,7 @@ export default function Header() {
       icon: "healthicons:i-exam-multiple-choice",
       link: "/competitive-coding",
     },
-  ];
+  ], []);
   
   const [cardData, setCardData] = useState(initialCardData);
   const { ref, inView } = useInView();
@@ -50,7 +50,7 @@ export default function Header() {
       id: Math.random().toString(36).substr(2, 9), // Generate a unique ID for each new card
     }));
     setCardData((prevCards) => [...prevCards, ...newCardData]);
-  }, []);
+  }, [initialCardData]);
 
   React.useEffect(() => {
     if (inView) {
@@ -103,7 +103,7 @@ export default function Header() {
       </div>
       <div className="card-container">
 {cardData.map((card, i) => (
-          <Link href={card.link}>
+          <Link key={card.id} href={card.link}>
             <motion.div
               key={card.id}
               className="card"

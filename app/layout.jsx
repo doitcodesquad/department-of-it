@@ -1,3 +1,4 @@
+import { SessionProviderNextAuth } from "./Providers";
 import "./globals.css";
 import { Libre_Franklin } from 'next/font/google'
  
@@ -37,7 +38,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <SessionProviderNextAuth>
+        <body>{children}</body>
+      </SessionProviderNextAuth>
     </html>
   );
 }

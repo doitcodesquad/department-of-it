@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
 import { getToken } from "next-auth/jwt";
 import logger from "@/utils/logger";
-
+export const dynamic = 'force-dynamic';
 export async function GET(request) {
   try {
     const token = await getToken({

@@ -9,9 +9,9 @@ export async function middleware(request) {
   const pathname = request.nextUrl.pathname;
 
   if (
-    pathname.startsWith("/api/auth") ||
-    pathname.startsWith("/api/contact") ||
-    pathname.startsWith("/api/members/register")
+    request.nextUrl.pathname.startsWith("/api/auth") ||
+    request.nextUrl.pathname.startsWith("/api/contact") ||
+    request.nextUrl.pathname.startsWith("/api/members/register")
   ) {
     return NextResponse.next();
   }

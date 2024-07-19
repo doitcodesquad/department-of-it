@@ -31,16 +31,34 @@ body {
 }
 
 
+/* Navbar styles */
 .navbar {
-  @apply w-full me-11 p-4 flex justify-between items-center  border-b-2 border-black
+  @apply w-full p-4 flex justify-between items-center border-b-2 border-black;
 }
+
 .nav-list {
-  @apply text-black lg:flex gap-2 text-3xl font-medium me-11 hidden
+  @apply text-black lg:flex gap-2 text-3xl font-medium hidden;
 }
 
 .nav-item {
-  @apply p-4
+  @apply p-4;
 }
+
+.nav-toggle {
+  @apply lg:hidden;
+}
+
+/* Mobile menu styles */
+.mobile-nav-list {
+  @apply lg:hidden fixed inset-0 bg-emerald-50 shadow-lg z-50 transition-transform duration-300 ease-in-out;
+}
+
+.nav-item-mobile {
+  @apply p-4 text-black text-2xl;
+}
+
+
+
 
 .header {
   @apply relative mt-24 gap-11 flex flex-wrap md:flex-nowrap  items-center md:items-start justify-center

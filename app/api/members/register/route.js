@@ -6,17 +6,50 @@ export async function POST(request) {
   try {
     await dbConnect();
 
-    const { name, email, password } = await request.json();
+    const {
+      username,
+      name,
+      email,
+      password,
+      memberType,
+      isOutsider,
+      club,
+      college,
+      department,
+      programme,
+      course,
+      bio,
+      semester,
+      socials,
+    } = await request.json();
+
     const memberExists = await Member.findOne({ email });
     if (!memberExists) {
-      await Member.create({ name, email, password });
-      await logger.info("Member created", { name, email });
+      await Member.create({
+        username,
+        name,
+        email,
+        password,
+        memberType,
+        isOutsider,
+        club,
+        college,
+        department,
+        programme,
+        course,
+        bio,
+        socials,
+        semester,
+      });
+      await logger.info(
+        "Member created " + "Name : " + name + " & Email : " + email
+      );
       return NextResponse.json({
         message: "Successfully created Member",
         status: 200,
       });
     }
-    await logger.info("Member Already Exists", { email });
+    await logger.info("Member Already Exists with Provided Email " + email);
     return NextResponse.json({
       message: "Member Already Exists with provided Email",
       status: 400,

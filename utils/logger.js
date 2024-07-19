@@ -1,6 +1,5 @@
 import clientPromise from "@/lib/mongodb";
 import { headers } from "next/headers";
-import { NextRequest } from "next/server";
 const DB_NAME = "codesquad-dit";
 const logToDb = async (level, message, meta) => {
   const startTime = Date.now();

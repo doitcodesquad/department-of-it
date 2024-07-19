@@ -1,41 +1,26 @@
 import { NextResponse } from "next/server";
-import clientPromise from "@/lib/mongodb";
-import { getToken } from "next-auth/jwt";
+import { getDb } from "@/lib/mongodb";
 import logger from "@/utils/logger";
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export async function GET(request) {
   try {
-    const token = await getToken({
-      req: request,
-      secret: process.env.NEXTAUTH_SECRET,
-    });
-    if (!token) {
-      await logger.error("Unauthorized Access", {
-        url: request.url,
-        method: "GET",
-        ip: request.headers.get("x-forwarded-for"),
-      });
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get("page")) || 1;
-    const limit = parseInt(searchParams.get("limit")) || 100;
+    const limit = parseInt(searchParams.get("limit")) || 10;
     const userId = searchParams.get("userId");
     const method = searchParams.get("method");
-    const url = searchParams.get("url");
+    const route = searchParams.get("route");
     const status = searchParams.get("status");
     const startDate = searchParams.get("startDate");
     const endDate = searchParams.get("endDate");
 
-    const client = await clientPromise;
-    const db = client.db();
+    const db = await getDb();
     const collection = db.collection("audit_logs");
+    let filter = {};
 
-    const filter = {};
     if (userId) filter.userId = userId;
     if (method) filter.method = method;
-    if (url) filter.url = { $regex: url, $options: "i" };
+    if (route) filter.route = { $regex: route, $options: "i" };
     if (status) filter.status = parseInt(status);
     if (startDate || endDate) {
       filter.timestamp = {};
@@ -52,11 +37,30 @@ export async function GET(request) {
       .limit(limit)
       .toArray();
 
-    await logger.info("API Access", {
-      url: request.url,
-      method: "GET",
-      ip: request.headers.get("x-forwarded-for"),
-    });
+    if (logs.length === 0) {
+      console.error(
+        "No logs found with the current filter. Retrieving all logs."
+      );
+      filter = {};
+      const allTotal = await collection.countDocuments();
+      const allLogs = await collection
+        .find()
+        .sort({ timestamp: -1 })
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .toArray();
+
+      return NextResponse.json({
+        logs: allLogs,
+        pagination: {
+          total: allTotal,
+          page,
+          limit,
+          totalPages: Math.ceil(allTotal / limit),
+        },
+      });
+    }
+
     return NextResponse.json({
       logs,
       pagination: {
@@ -69,8 +73,17 @@ export async function GET(request) {
   } catch (error) {
     console.error("Failed to fetch audit logs:", error);
     return NextResponse.json(
-      { error: "Internal Server Error" },
+      { error: "Internal Server Error", details: error.message },
       { status: 500 }
     );
   }
+}
+
+export async function POST(req) {
+  const { level, message, meta } = await req.json();
+  await logger[level](message, meta);
+  return new Response(JSON.stringify({ status: "logged" }), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
 }

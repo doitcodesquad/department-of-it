@@ -82,7 +82,7 @@ export default function Navbar() {
           <Link className="nav-item" href="/clubs">
             Clubs
           </Link>
-          <Link className="nav-item" href="/contact-us">
+          <Link className="nav-item" href="/contact">
             Contact
           </Link>
         </div>
@@ -111,7 +111,7 @@ export default function Navbar() {
               <Link className="nav-item-mobile" href="/">Events</Link>
               <Link className="nav-item-mobile" href="/">Blog</Link>
               <Link className="nav-item-mobile" href="/">Clubs</Link>
-              <Link className="nav-item-mobile" href="/">Contact</Link>
+              <Link className="nav-item-mobile" href="/contact">Contact</Link>
             </div>
           </motion.div>
         )}

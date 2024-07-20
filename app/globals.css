@@ -22,7 +22,7 @@
 }
 
 body {
- @apply font-mono w-screen h-screen bg-emerald-50 lg:px-24
+ @apply font-mono w-screen h-screen bg-emerald-50 lg:px-24 
 }
 
 
@@ -53,7 +53,7 @@ body {
 
 /* Mobile menu styles */
 .mobile-nav-list {
-  @apply lg:hidden fixed inset-0 bg-emerald-50 shadow-lg z-50 transition-transform duration-300 ease-in-out;
+  @apply fixed top-0 right-0 h-screen w-full bg-emerald-50 shadow-lg z-50;
 }
 
 .nav-item-mobile {
@@ -67,18 +67,18 @@ body {
   @apply relative mt-11 gap-11 flex flex-wrap md:flex-nowrap  items-center md:items-start justify-center
 }
 .intro {
-  @apply flex flex-col h-full w-11/12
+  @apply flex flex-col h-full w-11/12 md:ms-3 
 }
 
 .intro-text {
   
-  @apply relative  p-3 lg:p-8 bg-transparent h-[24.23rem] md:h-[29rem] left-0 w-full  border-4 border-black
+  @apply relative  p-3 lg:p-8 bg-transparent lg:min-h-[33.41rem] xl:min-h-[24.23rem] h-[24.23rem] md:h-[29rem] left-0 w-full  border-4 border-black
 }
 
 
 .intro-text::after {
   content: '';
-  @apply absolute mt-2 flex top-extra right-0 w-[42.23%] md:w-8/12 lg:w-9/12 rounded bg-black/55 border-2 border-black/55
+  @apply absolute mt-2 md:mt-0 flex top-extra right-0 w-[42.23%] md:w-[14rem] rounded bg-black/55 border-2 border-black/55
 }
 
 .social {
@@ -102,7 +102,7 @@ h3 {
 }
 
 .register-button-container {
-  @apply flex w-full justify-center mt-0
+  @apply flex w-full justify-center md:justify-start mt-0
 }
 .register-button {
   @apply bg-transparent hover:bg-black duration-300 hover:text-white px-32 md:px-9 py-2 md:ms-[1.532rem] border-2 border-black 

@@ -32,7 +32,7 @@ export const authOptions = {
           id: user._id,
           email: user.email,
           name: user.name,
-          role: user.memberType,
+          memberType: user.memberType,
         };
       },
     }),

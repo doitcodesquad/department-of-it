@@ -1,9 +1,7 @@
 import { SessionProviderNextAuth } from "./Providers";
 import "./globals.css";
-import { Libre_Franklin } from 'next/font/google'
- 
-// If loading a variable font, you don't need to specify the font weight
-const libre_franklin = Libre_Franklin({ subsets: ['latin'] })
+import Navbar from "./components/Navbar";
+
 export const metadata = {
   title: "CodeSquad - Department of IT",
   description:
@@ -34,12 +32,14 @@ export const metadata = {
     "innovation",
   ],
 };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <SessionProviderNextAuth>
-        <body>{children}</body>
+        <body>
+          <Navbar />
+          {children}
+        </body>
       </SessionProviderNextAuth>
     </html>
   );

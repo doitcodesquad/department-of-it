@@ -3,7 +3,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "@/lib/mongodb";
 import connectToDatabase from "@/lib/db";
-import bcrypt from "bcryptjs";
 import Member from "@/models/Member";
 
 export const authOptions = {
@@ -20,18 +19,21 @@ export const authOptions = {
 
         const user = await Member.findOne({ email: credentials.email });
         if (!user) {
-          throw new Error("No user found");
+          throw new Error("No user found with this email");
         }
 
-        const isValid = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
+        const isValid = await user.comparePassword(credentials.password);
+
         if (!isValid) {
-          throw new Error("Invalid password");
+          throw new Error("Incorrect password");
         }
 
-        return { id: user._id, email: user.email, name: user.name };
+        return {
+          id: user._id,
+          email: user.email,
+          name: user.name,
+          role: user.memberType,
+        };
       },
     }),
   ],
@@ -42,11 +44,13 @@ export const authOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.role = user.memberType;
       }
       return token;
     },
     async session({ session, token }) {
       session.user.id = token.id;
+      session.user.role = token.role;
       return session;
     },
   },

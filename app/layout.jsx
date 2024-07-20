@@ -40,6 +40,10 @@ export default function RootLayout({ children }) {
           <Navbar />
           {children}
         </body>
+        <body>
+          <Navbar />
+          {children}
+        </body>
       </SessionProviderNextAuth>
     </html>
   );

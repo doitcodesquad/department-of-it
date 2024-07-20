@@ -10,10 +10,8 @@ import Coding from '../../public/Coding.svg';
 import UI from '../../public/UI.svg';
 import Exam from '../../public/Exam.svg';
 
-
-
 export default function Header() {
-  
+
   const initialCardData = React.useMemo(() => [
     {
       id: 1,
@@ -42,15 +40,23 @@ export default function Header() {
   ], []);
   
   const [cardData, setCardData] = useState(initialCardData);
-  const { ref, inView } = useInView();
+  const [loading, setLoading] = useState(false);
+  const { ref, inView } = useInView({
+    threshold: 0.3,
+  });
 
   const loadMoreCards = useCallback(() => {
-    const newCardData = initialCardData.map((card) => ({
-      ...card,
-      id: Math.random().toString(36).substr(2, 9), // Generate a unique ID for each new card
-    }));
-    setCardData((prevCards) => [...prevCards, ...newCardData]);
-  }, [initialCardData]);
+    if (loading) return;
+    setLoading(true);
+    setTimeout(() => {
+      const newCardData = initialCardData.map((card) => ({
+        ...card,
+        id: Math.random().toString(36).substr(2, 9),
+      }));
+      setCardData((prevCards) => [...prevCards, ...newCardData]);
+      setLoading(false);
+    }, 500);
+  }, [initialCardData, loading]);
 
   React.useEffect(() => {
     if (inView) {
@@ -96,22 +102,24 @@ export default function Header() {
           </Link>
         </div>
         <div className='register-button-container'>
-          <button>
-            <Link href="/login" className="register-button">Register</Link>
+          <button className="register-button animate">
+            <Link href="/login">Register</Link>
           </button>
         </div>
       </div>
+
+      {/* Desktop Card Container */}
       <div className="card-container">
-{cardData.map((card, i) => (
+        {cardData.map((card, i) => (
           <Link key={card.id} href={card.link}>
             <motion.div
               key={card.id}
               className="card"
               initial="offscreen"
               whileInView="onscreen"
-              transition={{ duration: 0.5, delay: i * 0.2 }}
+              transition={{delay: i * 0.1 }}
               variants={cardVariants}
-              viewport={{ once: false, amount: 0.5 }}
+              viewport={{ once: false, amount: 0.54 }}
             >
               <div className="card-image">
                 <Image src={card.image} alt={card.title} width={400} height={100} />
@@ -126,7 +134,28 @@ export default function Header() {
             </motion.div>
           </Link>
         ))}
-        <div ref={ref} />
+        <div ref={ref} className="loading-trigger" />
+      </div>
+
+      {/* Mobile Card Container */}
+      <div className="card-container-mobile">
+        {cardData.map((card, i) => (
+          <Link key={card.id} href={card.link}>
+            <div className="card-mobile">
+              <div className="card-image">
+                <Image src={card.image} alt={card.title}  objectFit= "contain"  />
+              </div>
+              <div className="card-heading">
+                <Icon icon={card.icon} className="card-icon" />
+                <div className="card-title">{card.title}</div>
+              </div>
+              <div className="card-description">
+                {card.description}
+              </div>
+            </div>
+          </Link>
+        ))}
+        <div ref={ref} className="loading-trigger" />
       </div>
     </div>
   );

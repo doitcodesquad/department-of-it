@@ -22,7 +22,7 @@
 }
 
 body {
- @apply font-mono w-screen h-screen bg-emerald-50 lg:px-24
+ @apply font-mono w-screen h-screen bg-emerald-50 lg:px-24 
 }
 
 
@@ -33,7 +33,10 @@ body {
 
 /* Navbar styles */
 .navbar {
-  @apply w-full p-4 flex justify-between items-center border-b-2 border-black;
+  @apply sticky backdrop-blur-md top-0 z-30 w-full me-11 p-3 flex justify-between items-center  border-b-2 border-black
+}
+.navbar::before {
+  @apply  sticky bg-black w-screen z-40 top-0 left-0
 }
 
 .nav-list {
@@ -50,7 +53,7 @@ body {
 
 /* Mobile menu styles */
 .mobile-nav-list {
-  @apply lg:hidden fixed inset-0 bg-emerald-50 shadow-lg z-50 transition-transform duration-300 ease-in-out;
+  @apply fixed top-0 right-0 h-screen w-full bg-emerald-50 shadow-lg z-50;
 }
 
 .nav-item-mobile {
@@ -61,29 +64,29 @@ body {
 
 
 .header {
-  @apply relative mt-24 gap-11 flex flex-wrap md:flex-nowrap  items-center md:items-start justify-center
+  @apply relative mt-11 gap-11 flex flex-wrap md:flex-nowrap  items-center md:items-start justify-center
 }
 .intro {
-  @apply flex flex-col h-full w-full
+  @apply flex flex-col h-full w-11/12 md:ms-3 
 }
 
 .intro-text {
   
-  @apply relative ms-3 p-3 lg:p-11 bg-transparent h-[29rem] left-0 w-full  border-4 border-black
+  @apply relative  p-3 lg:p-8 bg-transparent lg:min-h-[33.41rem] xl:min-h-[24.23rem] h-[24.23rem] md:h-[29rem] left-0 w-full  border-4 border-black
 }
 
 
 .intro-text::after {
   content: '';
-  @apply absolute  hidden md:flex top-extra right-0 w-5/12 md:w-8/12 lg:w-9/12 rounded bg-black/55 border-2 border-black/55
+  @apply absolute mt-2 md:mt-0 flex top-extra right-0 w-[42.23%] md:w-[14rem] rounded bg-black/55 border-2 border-black/55
 }
 
 .social {
-  @apply flex m-3 p-3  justify-center md:justify-start gap-3 w-max
+  @apply flex my-3 md:ms-3 p-3  justify-start md:justify-start gap-3 w-full md:w-max
 }
 
 .icon {
-  @apply text-black text-icon p-2 border border-black/30 rounded-full
+  @apply text-black text-icon md:text-icon p-2 border border-black/30 rounded-full
 }
 
 h1 {
@@ -99,14 +102,16 @@ h3 {
 }
 
 .register-button-container {
-  @apply mt-3
+  @apply flex w-full justify-center md:justify-start mt-0
 }
 .register-button {
-  @apply bg-transparent hover:bg-black duration-300 hover:text-white px-9 py-3 ms-[1.532rem] border-2 border-black 
+  @apply bg-transparent hover:bg-black duration-300 hover:text-white px-32 md:px-9 py-2 md:ms-[1.532rem] border-2 border-black 
 }
 
 .card-container {
-  @apply flex flex-col items-center justify-center gap-2 w-[74%] h-[38rem] mx-3 overflow-x-hidden overflow-y-auto
+  @apply hidden md:flex flex-col items-center justify-start gap-3 w-9/12 max-w-[54%] h-[calc(100vh-12rem)] overflow-x-hidden overflow-y-auto py-6;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -114,25 +119,52 @@ h3 {
   @apply hidden;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.card-container {
+.card-container-mobile::before {
+  @apply overflow-clip w-full
+}
+
+.card-container-mobile {
+  @apply  w-full flex flex-row flex-nowrap flex-shrink-0 
+  md:hidden items-center justify-center gap-2 p-3 h-full overflow-x-scroll   ;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+.card-mobile {
+  @apply relative p-3 min-w-[21rem] min-h-[29rem] max-h-[24rem] w-[21rem] h-full  bg-orange-50 border-2 border-black rounded-sm hover:shadow-xl hover:shadow-black/30 duration-200;
+}
+
+.card-image {
+
+  @apply w-full h-56 
+}
+
+.card-image img {
+  @apply object-cover w-full h-full;
+}
+
 .card {
-  @apply  relative p-3 w-96 bg-orange-50   border-2 border-black rounded-sm hover:scale-110 hover:shadow-xl hover:shadow-black/30 duration-100
+  @apply relative p-3 w-full max-w-sm bg-orange-50 border-2 border-black rounded-sm hover:scale-105 hover:shadow-xl hover:shadow-black/30 duration-200;
 }
 
 .card-heading {
-  @apply flex py-3 items-center  gap-3 text-4xl border-b-2 border-black
+  @apply flex py-3 items-center  gap-3 text-3xl md:text-4xl border-b-2 border-black
 }
 
 .card-icon {
-  @apply text-4xl
+  @apply text-2xl md:text-4xl
 }
 .card-title {
-  @apply font-bold text-3xl
+  @apply font-bold text-2xl
 }
 .card-description {
-  @apply text-black/80 text-xl  font-bold py-3 w-full
+  @apply flex flex-shrink flex-wrap text-black/80 text-lg md:text-xl  font-bold py-3 w-full 
+}
+
+.loading-trigger {
+  @apply w-full h-11;
+}
+
+.animate {
+  @apply hover:scale-110
 }

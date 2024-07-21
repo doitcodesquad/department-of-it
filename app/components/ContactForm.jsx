@@ -91,9 +91,6 @@ const ContactForm = () => {
         <div className="md:p-4 flex flex-wrap justify-center items-center w-full">
           <div className="max-w-xl w-full my-8 rounded-sm">
             <div className="m-4">
-              <h1 className="my-4 text-2xl font-medium text-secondary-200">
-                Message me
-              </h1>
               <form onSubmit={handleFormSubmit} encType="multipart/form-data">
                 <div className="relative mb-4">
                   <input

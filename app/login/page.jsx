@@ -40,8 +40,8 @@ const Details = ({ onNext, onPrevious, data, isFirstStep }) => {
         exit={{ opacity: 0 }}
         className='min-h-screen bg-emerald-50 p-4 md:p-8'>
         
-        <h2 className=" text-center mb-2">Sign In</h2>
-        <h6 className="text-center pb-10 text-xs  text-gray-500">Welcome back! Enter your credentials below to access your account.</h6>
+        <h2 className=" text-center mb-3">Sign In</h2>
+        <h6 className="text-center pb-10 text-md  text-gray-500">Enter your credentials below to access your account.</h6>
         
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto  border-4 border-black bg-orange-50 p-4 md:p-6">
           <div className="w-full mb-10 mt-[3rem]">

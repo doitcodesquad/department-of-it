@@ -1,6 +1,7 @@
 import { SessionProviderNextAuth } from "./Providers";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import { ToasterProvider } from './ToasterProvider'
 
 export const metadata = {
   title: "CodeSquad - Department of IT",
@@ -39,6 +40,7 @@ export default function RootLayout({ children }) {
         <body>
           <Navbar />
           {children}
+          <ToasterProvider />
         </body>
       </SessionProviderNextAuth>
     </html>

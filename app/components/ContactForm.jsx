@@ -102,7 +102,7 @@ const ContactForm = () => {
                     id="name"
                     placeholder="Full Name"
                     value={name}
-                    onChange={handleEmailChange}
+                    onChange={handleNameChange}
                     className="w-full px-3 py-2 h-12 rounded-sm placeholder-transparent text-secondary-100 bg-emerald-50 text-sm border border-black focus:outline-none focus:border-2 focus:border-secondary-100 peer transition-border"
                   />
                   <label htmlFor="name" className="floating-placeholder">
@@ -117,7 +117,7 @@ const ContactForm = () => {
                     id="email"
                     placeholder="Email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={handleEmailChange}
                     className="w-full px-3 py-2 h-12 rounded-sm placeholder-transparent text-secondary-100 bg-emerald-50 text-sm border border-black focus:outline-none focus:border-2 focus:border-secondary-100 peer transition-border"
                   />
                   <label htmlFor="email" className="floating-placeholder">

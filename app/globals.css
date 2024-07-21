@@ -22,29 +22,31 @@
 }
 
 body {
- @apply font-mono w-screen h-screen bg-emerald-50 lg:px-24 
+ @apply font-mono  bg-emerald-50 
 }
 
 
 .title {
-  @apply text-2xl lg:text-4xl text-black font-bold
+  @apply ms-2 text-2xl lg:text-4xl text-black font-bold py-3
 }
 
-
+.nav-container {
+  @apply flex justify-between items-center w-screen sticky top-0 z-40 backdrop-blur-md  md:px-11
+}
 /* Navbar styles */
 .navbar {
-  @apply sticky backdrop-blur-md top-0 z-30 w-full me-11 p-3 flex justify-between items-center  border-b-2 border-black
+  @apply flex justify-between items-center w-full border-b-2 border-black
 }
-.navbar::before {
+/* .navbar::before {
   @apply  sticky bg-black w-screen z-40 top-0 left-0
-}
+} */
 
 .nav-list {
-  @apply text-black lg:flex gap-2 text-3xl font-medium hidden;
+  @apply me-2 text-black lg:flex gap-2 text-2xl font-medium hidden;
 }
 
 .nav-item {
-  @apply p-4;
+  @apply  pl-8;
 }
 
 .nav-toggle {
@@ -64,7 +66,7 @@ body {
 
 
 .header {
-  @apply relative mt-11 gap-11 flex flex-wrap md:flex-nowrap  items-center md:items-start justify-center
+  @apply relative mt-11 gap-11 flex flex-wrap lg:flex-nowrap  items-center md:items-center justify-center md:mx-11
 }
 .intro {
   @apply flex flex-col h-full w-11/12 md:ms-3 
@@ -72,13 +74,13 @@ body {
 
 .intro-text {
   
-  @apply relative  p-3 lg:p-8 bg-transparent lg:min-h-[33.41rem] xl:min-h-[24.23rem] h-[24.23rem] md:h-[29rem] left-0 w-full  border-4 border-black
+  @apply relative  p-3 lg:p-8 bg-orange-50 lg:min-h-[33.41rem] xl:min-h-[24.23rem] h-[24.23rem] md:h-[29rem] left-0 w-full  border-4 border-black
 }
 
 
 .intro-text::after {
   content: '';
-  @apply absolute mt-2 md:mt-0 flex top-extra right-0 w-[42.23%] md:w-[14rem] rounded bg-black/55 border-2 border-black/55
+  @apply absolute  flex top-extra right-0 w-[42.23%] md:w-[72%] lg:w-[63%] lg:-mt-3 xl:mt-0 rounded bg-black/55 border-2 border-black/55
 }
 
 .social {
@@ -105,11 +107,11 @@ h3 {
   @apply flex w-full justify-center md:justify-start mt-0
 }
 .register-button {
-  @apply bg-transparent hover:bg-black duration-300 hover:text-white px-32 md:px-9 py-2 md:ms-[1.532rem] border-2 border-black 
+  @apply bg-primary hover:bg-black duration-300 hover:text-white px-32 md:px-9 py-2 md:ms-[1.532rem] border-2 border-black 
 }
 
 .card-container {
-  @apply hidden md:flex flex-col items-center justify-start gap-3 w-9/12 max-w-[54%] h-[calc(100vh-12rem)] overflow-x-hidden overflow-y-auto py-6;
+  @apply hidden lg:flex flex-col items-center justify-start gap-3 w-9/12 max-w-[54%] h-[calc(100vh-12rem)] overflow-x-hidden overflow-y-auto py-6;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
@@ -125,7 +127,7 @@ h3 {
 
 .card-container-mobile {
   @apply  w-full flex flex-row flex-nowrap flex-shrink-0 
-  md:hidden items-center justify-center gap-2 p-3 h-full overflow-x-scroll   ;
+  lg:hidden items-center justify-center gap-2 p-3 h-full overflow-x-scroll   ;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
@@ -168,3 +170,9 @@ h3 {
 .animate {
   @apply hover:scale-110
 }
+
+.floating-placeholder {
+  @apply absolute left-3 -top-3 bg-emerald-50 px-1 text-sm text-black transition-all peer-placeholder-shown:top-[0.74rem] peer-placeholder-shown:text-base peer-placeholder-shown:text-black/30 peer-focus:-top-3 peer-focus:text-sm peer-focus:text-black
+}
+
+

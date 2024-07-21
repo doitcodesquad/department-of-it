@@ -102,8 +102,8 @@ export default function Header() {
           </Link>
         </div>
         <div className='register-button-container'>
-          <button className="register-button animate">
-            <Link href="/login">Register</Link>
+          <button>
+            <Link href="/register" className="register-button">Register</Link>
           </button>
         </div>
       </div>

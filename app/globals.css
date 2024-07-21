@@ -22,7 +22,8 @@
 }
 
 body {
- @apply font-mono  bg-emerald-50 
+ @apply font-mono  bg-emerald-50 ;
+ /* overflow-x: hidden; */
 }
 
 
@@ -31,7 +32,9 @@ body {
 }
 
 .nav-container {
-  @apply flex justify-between items-center w-screen sticky top-0 z-40 backdrop-blur-md  md:px-11
+  @apply flex justify-between items-center w-screen sticky top-0 z-40 backdrop-blur-md md:px-11;
+  position: sticky;
+  top: 0;
 }
 /* Navbar styles */
 .navbar {
@@ -55,7 +58,13 @@ body {
 
 /* Mobile menu styles */
 .mobile-nav-list {
-  @apply fixed top-0 right-0 h-screen w-full bg-emerald-50 shadow-lg z-50;
+  @apply fixed top-0 right-0 h-screen w-full bg-emerald-50 shadow-lg z-50 overflow-y-auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overscroll-behavior: contain;
 }
 
 .nav-item-mobile {

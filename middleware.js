@@ -11,6 +11,7 @@ export async function middleware(request) {
   if (
     request.nextUrl.pathname.startsWith("/api/auth") ||
     request.nextUrl.pathname.startsWith("/api/contact") ||
+    request.nextUrl.pathname.startsWith("/api/universities") ||
     request.nextUrl.pathname.startsWith("/api/members/register")
   ) {
     return NextResponse.next();

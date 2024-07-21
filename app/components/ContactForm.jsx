@@ -22,10 +22,11 @@ const ContactForm = () => {
     if (!message) newErrors.message = 'Message is required';
     else if (message.length > 100) newErrors.message = 'Message should not exceed 100 characters.';
 
-    if (image &&!['image/jpeg', 'image/png'].includes(image.type)) newErrors.image = 'Only .jpg and .png files are allowed';
+    if (image && !['image/jpeg', 'image/png'].includes(image.type)) newErrors.image = 'Only .jpg and .png files are allowed';
 
     return newErrors;
   };
+
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -36,15 +37,13 @@ const ContactForm = () => {
     } else {
       // Send the form data to your server or API here
       console.log('Form submitted!');
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('message', message);
-      formData.append('image', image);
 
       fetch('/api/contact', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message, image: image ? image : "" })
       })
         .then((response) => response.json())
         .then((data) => console.log(data))
@@ -52,9 +51,30 @@ const ContactForm = () => {
     }
   };
 
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+    clearError('name');
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    clearError('email');
+  };
+
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value);
+    clearError('message');
+  };
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setImage(file);
+    clearError('image');
+  };
+
+  const clearError = (field) => {
+    setErrors(prevErrors => ({ ...prevErrors, [field]: undefined }));
   };
 
   return (
@@ -82,7 +102,7 @@ const ContactForm = () => {
                     id="name"
                     placeholder="Full Name"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={handleEmailChange}
                     className="w-full px-3 py-2 h-12 rounded-sm placeholder-transparent text-secondary-100 bg-emerald-50 text-sm border border-black focus:outline-none focus:border-2 focus:border-secondary-100 peer transition-border"
                   />
                   <label htmlFor="name" className="floating-placeholder">
@@ -112,7 +132,7 @@ const ContactForm = () => {
                     id="message"
                     placeholder="Your Message"
                     value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    onChange={handleMessageChange}
                     className="w-full px-3 py-2 rounded-sm placeholder-transparent text-secondary-100 bg-emerald-50 text-sm border border-black focus:outline-none focus:border-2 focus:border-secondary-100 peer"
                   ></textarea>
                   <label htmlFor="message" className="floating-placeholder">
@@ -140,11 +160,9 @@ const ContactForm = () => {
                 <div className="mb-4">
                   <button
                     type="submit"
-                    className="w-full border-2 text-xl border-black hover:text-white bg-accent inline-block text-black no-underline hover:bg-black py-4 px-4 rounded-md font-medium focus:outline-none transition-all"
+                    className="w-full border-2 text-xl border-black hover:text-white bg-primary inline-block text-black no-underline hover:bg-black py-4 px-4 rounded-md font-medium focus:outline-none transition-all"
                   >
                     Send Message
-                    {/* https://colorhunt.co/palettes/pastel-mint */}
-                    {/* https://mycolor.space/?hex=%23FFF7ED&sub=1 */}
                   </button>
                 </div>
               </form>

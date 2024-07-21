@@ -1,11 +1,11 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
-import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 
-const Clubs = () => {
-  const router = useRouter();
-  const [selectedOptions, setSelectedOptions] = useState([]);
+const Clubs = ({ onNext, onPrevious, data }) => {
+  const [selectedOptions, setSelectedOptions] = useState(data?.selectedOptions || []);
+
   const options = [
     {
       name: "Web Development",
@@ -39,6 +39,12 @@ const Clubs = () => {
     }
   ];
 
+  useEffect(() => {
+    if (data?.selectedOptions) {
+      setSelectedOptions(data.selectedOptions);
+    }
+  }, [data]);
+
   const handleOptionChange = (optionName) => {
     setSelectedOptions(prevOptions => 
       prevOptions.includes(optionName)
@@ -48,58 +54,77 @@ const Clubs = () => {
   };
 
   const handleNextClick = () => {
-    router.push('/department');
+    onNext({ selectedOptions });
   };
 
   return (
-    <div className="px-6 sm:px-0">
-      <h2 className=' text-center my-20 sm:mb-4  sm:mt-[20%]   '>Select your interests</h2>
-      <div className="max-w-full sm:max-w-3xl mx-auto py-3 sm:py-9 px-2 sm:px-6 bg-emerald-50 border-4 border-black relative">     
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 pb-12 sm:pb-16">
-          {options.map(option => (
-            <div 
-              key={option.name} 
-              onClick={() => handleOptionChange(option.name)}
-              className={`flex items-start cursor-pointer py-1 sm:py-3 px-2 sm:px-3 transition-all hover:bg-black hover:text-white duration-300 border-2 border-black group h-[70px] sm:h-[100px] overflow-hidden ${
-                selectedOptions.includes(option.name) ? 'bg-black text-white' : ''
-              }`}
-            >
-              <Icon 
-                icon={option.icon} 
-                className={`mr-1  sm:mr-3  self-center transition-colors duration-300 mt-1 ${
-                  selectedOptions.includes(option.name) 
-                    ? 'text-white' 
-                    : 'text-black group-hover:text-white'
-                }`} 
-                width="20"
-                height="20"
-                style={{ fontSize: '8rem' }}
-              />
-              <div>
-                <span className="text-[11px] sm:text-sm font-semibold">{option.name}</span>
-                <p className="text-[8px] sm:text-xs opacity-80 line-clamp-3">{option.description}</p>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen bg-emerald-50 p-4 md:p-8">
+      <div className="md:px-8 px-0">
+        <h2 className='text-center'>Select your interests</h2>
+        <div className="max-w-full sm:max-w-3xl mx-auto py-3 sm:py-9 px-2 sm:px-6 bg-orange-50 border-4 border-black relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 pb-4 sm:pb-8">
+            {options.map(option => (
+              <div
+              onClick={() => handleOptionChange(option.name)} className="border-2 border-black">
+                <div key={option.name} className={`h-24 flex flex-row gap-3 items-center  md:py-1 bg-emerald-50 border transition-all duration-300 
+                  ${
+                    selectedOptions.includes(option.name) ? 'text-black border-l-8 border-l-accent' : ''
+                  }`}>
+
+                    <div className={` ms-1 text-3xl md:text-4xl transition-colors duration-300 `}>
+                      <Icon
+                        icon={option.icon}
+                        
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <div className="text-lg md:text-xl">{option.name}</div>
+                        <div className="">
+                          <p className="text-sm md:text-md opacity-80 line-clamp-3">{option.description}</p>
+                        </div>
+                    </div>
+    
+         
+                </div>
               </div>
+            ))}
+          </div>
+          <div className=" flex md:flex-nowrap flex-wrap w-full justify-between items-center ">
+            <div className="my-2 me-2 text-[10px] sm:text-sm text-gray-600 order-1 sm:order-none">Choose all that apply</div>
+            <div className="flex justify-end gap-2 items-center w-full md:w-[21.8rem]">
+              <button
+                onClick={onPrevious}
+                className="w-full flex items-center justify-center bg-primary cursor-pointer py-2 px-2 sm:px-3 transition-all hover:bg-black hover:text-white duration-300 border-2 border-black group"
+              >
+                <Icon 
+                  icon="mdi:arrow-left"
+                  className="transition-colors duration-300 text-black group-hover:text-white text-lg"
+                  width="14"
+                  height="14"
+                />
+                <span className="text-[10px] sm:text-sm pl-1 sm:pl-3">Previous</span>
+              </button>
+              <button
+                onClick={handleNextClick}
+                 className="w-full flex items-center justify-center bg-primary cursor-pointer py-2 px-2 sm:px-3 transition-all hover:bg-black hover:text-white duration-300 border-2 border-black group"
+              >
+                <span className="text-[10px] sm:text-sm pl-2 pr-1 sm:pr-3">Next</span>
+                <Icon 
+                  icon="mdi:arrow-left"
+                  className="rotate-180 transition-colors duration-300 text-black group-hover:text-white text-lg"
+                  width="14"
+                  height="14"
+                />
+              </button>
             </div>
-          ))}
-        </div>
-        <div className="absolute bottom-2 sm:bottom-4 left-2 right-2 sm:left-4 sm:right-4 flex flex-col sm:flex-row justify-between items-center space-y-1 sm:space-y-0">
-          <span className="text-[10px] sm:text-sm  text-gray-600 order-1 sm:order-none">Choose all that apply</span>
-          <div 
-            onClick={handleNextClick}
-            className="flex items-center justify-center cursor-pointer max-[500px]:w-full py-1 sm:py-2 px-2 sm:px-3 transition-all hover:bg-black hover:text-white duration-300 border-2 border-black group order-2 sm:order-none"
-          >
-            <span className="text-[10px] sm:text-sm  pl-2 pr-1 sm:pr-3">Next</span>
-            <Icon 
-              icon="mdi:arrow-right"
-              className="transition-colors duration-300 text-black group-hover:text-white"
-              width="10"
-              height="10"
-              style={{ fontSize: '0.625rem' }}
-            />
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

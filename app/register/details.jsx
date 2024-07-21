@@ -1,15 +1,16 @@
 'use client';
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
-import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 
-const Details = () => {
-  const router = useRouter();
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-  });
+const Details = ({ onNext, onPrevious, data, isFirstStep }) => {
+  const [formData, setFormData] = useState(data || { username: '', email: '' });
+
+  useEffect(() => {
+    if (data) {
+      setFormData(data);
+    }
+  }, [data]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,32 +19,31 @@ const Details = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    // Add your form submission logic here
-    // After submission, you can navigate to the next page
-    router.push('/clubs'); // Replace '/next-page' with your actual next page route
+    onNext(formData);
   };
 
   return (
     <>
-      <h2 className='flex justify-center'>Join with us!</h2>
-      <div className='flex justify-center pt-5'>
-        <form onSubmit={handleSubmit} className="flex flex-col border-4 border-black px-12 max-w-md">
+    
+      <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className='min-h-screen bg-emerald-50 p-4 md:p-8'>
+        <h2 className="text-center my-[4.89rem] md:mb-14 sm:max-mb-11">Join with us!</h2>
+        <form onSubmit={handleSubmit} className="max-w-lg mx-auto border-4 border-black bg-orange-50 p-4 md:p-6">
           <div className="w-full mb-10 mt-[3rem]">
             <div className="relative">
               <input
                 type="text"
                 name="username"
                 id="username"
+                placeholder="Username"
                 value={formData.username}
                 onChange={handleChange}
-                required
-                className="peer w-full px-5 py-2 pr-10 border bg-emerald-50 border-black focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
-                placeholder=" "
+                className="w-full px-3 py-2 h-12 rounded-sm placeholder-transparent text-secondary-100 bg-emerald-50 text-sm border border-black focus:outline-none focus:border-2 peer transition-border"
               />
-              <label
-                htmlFor="username"
-                className="absolute left-3 -top-2.5 bg-emerald-50 px-1 text-md text-gray-600 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-black"
-              >
+              <label htmlFor="name" className="floating-placeholder">
                 Username
               </label>
               <Icon 
@@ -61,12 +61,12 @@ const Details = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="peer  w-full px-3 py-2 pr-10 border bg-emerald-50 border-black focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                className="w-full px-3 py-2 h-12 rounded-sm placeholder-transparent text-secondary-100 bg-emerald-50 text-sm border border-black focus:outline-none focus:border-2 peer transition-border"
                 placeholder=" "
               />
               <label
                 htmlFor="email"
-                className="absolute left-3 -top-2.5 bg-emerald-50 px-1 text-sm text-gray-600 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-black"
+                className="floating-placeholder"
               >
                 Email
               </label>
@@ -76,35 +76,36 @@ const Details = () => {
               />
             </div>
           </div>
-          {/* <div 
-            onClick={handleNextClick}
-            className="flex items-center justify-center cursor-pointer py-1 sm:py-2 px-2 sm:px-3 transition-all hover:bg-black hover:text-white duration-300 border-2 border-black group order-2 sm:order-none">
-         
-            <span className="text-[10px] sm:text-sm pr-1 sm:pr-3">Next</span>
-            <Icon 
-              icon="mdi:arrow-right"
-              className="transition-colors duration-300 text-black group-hover:text-white"
-              width="10"
-              height="10"
-              style={{ fontSize: '0.625rem' }}
-            />
-            </div> */}
-          <button
-            type="submit"
-            className="flex items-center justify-center self-center mb-10 cursor-pointer w-30 max-[500px]:w-full py-2 sm:py-2 px-2 sm:px-3 transition-all hover:bg-black hover:text-white duration-300 border-2 border-black group order-2 sm:order-none"
-          >
-          <span className="text-[10px] sm:text-sm pl-2 pr-1 sm:pr-3">Next</span>
-            <Icon 
-              icon="mdi:arrow-right"
-              className="transition-colors duration-300 text-black group-hover:text-white"
-              width="10"
-              height="10"
-              style={{ fontSize: '0.625rem' }}
-            />
-            
-          </button>
+          <div className="flex justify-end">
+            {!isFirstStep && (
+              <button
+                type="button"
+                onClick={onPrevious}
+                className="flex items-center justify-center bg-primary mb-10 cursor-pointer py-3 px-2 sm:px-3 transition-all hover:bg-black hover:text-white duration-300 border-2 border-black group"
+              >
+                <Icon 
+                  icon="mdi:arrow-left"
+                  className="transition-colors duration-300 text-black group-hover:text-white text-lg"
+                  width="14"
+                  height="14"
+                />
+                <span className="text-[10px] sm:text-sm pl-1 sm:pl-3">Previous</span>
+              </button>
+            )}
+            <button
+              type="submit"
+              className="flex items-center justify-center w-full bg-primary mb-3 cursor-pointer py-3 px-3 sm:px-3 transition-all hover:bg-black hover:text-white duration-300 border-2 border-black group ml-auto"
+            >
+              <span className="text-[10px] sm:text-sm pr-1 sm:pr-3">Next</span>
+              <Icon 
+                icon="mdi:arrow-right"
+                className="transition-colors duration-300 text-black group-hover:text-white text-lg"
+
+              />
+            </button>
+          </div>
         </form>
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -1,17 +1,18 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { Icon } from '@iconify/react';
+import { motion } from 'framer-motion';
 
-const Department = () => {
-  const [department, setDepartment] = useState('');
-  const [semester, setSemester] = useState('');
-  const [isOutsider, setIsOutsider] = useState(false);
-  const [university, setUniversity] = useState('');
+const Department = ({ onNext, onPrevious, data, isLastStep }) => {
+  const [formData, setFormData] = useState(data || {
+    department: '',
+    semester: '',
+    isOutsider: false,
+    university: '',
+  });
   const [universities, setUniversities] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-
-  const router = useRouter();
 
   const departments = [
     'Mathematics', 'Law', 'Physical Education', 'Information Technology', 
@@ -37,29 +38,38 @@ const Department = () => {
     }
   }, [searchTerm]);
 
-  const handleNext = () => {
-    console.log({
-      department,
-      semester,
-      isOutsider,
-      university: isOutsider ? university : 'N/A'
-    });
-    router.push('/next-page'); // Replace with your actual next page route
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    onNext(formData);
   };
 
   return (
-    <div className="min-h-screen bg-emerald-50 p-4 md:p-6">
-      <h2 className=" text-center my-20 md:mb15 sm:max-mb-10">Department Registration</h2>
-      <div className="max-w-md mx-auto border-4 border-black bg-emerald-50 p-4 md:p-6">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen bg-emerald-50 p-4 md:p-8">
+      <h2 className="text-center my-[4.89rem] md:mb-14 sm:max-mb-11">Department Registration</h2>
+      <form onSubmit={handleSubmit} className="max-w-lg mx-auto border-4 border-black bg-orange-50 p-4 md:p-6">
         <div className="mb-4">
           <label className="block mb-2" htmlFor="department">
             Department
           </label>
           <select
             id="department"
-            value={department}
-            onChange={(e) => setDepartment(e.target.value)}
-            className="w-full p-2 bg-inherit focus:bg-white text-gray-500 border-black border"
+            name="department"
+            value={formData.department}
+            onChange={handleChange}
+            className="w-full p-2 bg-emerald-50 text-gray-500 border-black border"
           >
             <option value="">Select Department</option>
             {departments.map((dept) => (
@@ -69,14 +79,15 @@ const Department = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 " htmlFor="semester">
+          <label className="block mb-2" htmlFor="semester">
             Semester
           </label>
           <select
             id="semester"
-            value={semester}
-            onChange={(e) => setSemester(e.target.value)}
-            className="w-full p-2 bg-inherit focus:bg-white text-gray-500 border-black border"
+            name="semester"
+            value={formData.semester}
+            onChange={handleChange}
+            className="w-full p-2 bg-emerald-50 text-gray-500 border-black border"
           >
             <option value="">Select Semester</option>
             {semesters.map((sem) => (
@@ -89,35 +100,40 @@ const Department = () => {
           <label className="flex items-center">
             <input
               type="checkbox"
-              checked={isOutsider}
-              onChange={(e) => setIsOutsider(e.target.checked)}
-              className="mr-2 appearance-none w-2 h-2 border border-black rounded-full bg-white checked:bg-black checked:border-transparent focus:outline-none"
+              name="isOutsider"
+              checked={formData.isOutsider}
+              onChange={handleChange}
+              className="mr-2 appearance-none w-2 h-2 border border-black rounded-full bg-emerald-50 checked:bg-black checked:border-transparent focus:outline-none"
             />
             <span className="">Are you an outsider?</span>
           </label>
         </div>
 
-        {isOutsider && (
+        {formData.isOutsider && (
           <div className="mb-4">
-            <label className="block mb-2 " htmlFor="university">
+            <label className="block mb-2" htmlFor="university">
               University
             </label>
             <input
               type="text"
               id="university"
+              name="university"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full p-2 border bg-inherit border-black focus:outline-none focus:bg-white"
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                handleChange(e);
+              }}
+              className="w-full p-2 border border-black focus:outline-none bg-emerald-50"
               placeholder="Search for university"
             />
             {universities.length > 0 && (
-              <ul className="mt-2 ">
+              <ul className="mt-2">
                 {universities.map((uni) => (
                   <li
                     key={uni}
-                    className="p-2 hover:bg-orange-50 cursor-pointer"
+                    className="p-2 bg-emerald-50 cursor-pointer"
                     onClick={() => {
-                      setUniversity(uni);
+                      setFormData(prevData => ({ ...prevData, university: uni }));
                       setSearchTerm(uni);
                       setUniversities([]);
                     }}
@@ -130,17 +146,37 @@ const Department = () => {
           </div>
         )}
 
-        <div className="flex justify-center mt-6">
+        <div className="mt-3 flex justify-between gap-2">
+          <button
+            type="button"
+            onClick={onPrevious}
+            className="flex items-center justify-center w-full bg-primary cursor-pointer py-2 px-2 sm:px-3 transition-all hover:bg-black hover:text-white duration-300 border-2 border-black group"
+          >
+            <Icon 
+              icon="mdi:arrow-left"
+              className="transition-colors duration-300 text-black group-hover:text-white text-lg"
+              width="14"
+              height="14"
+            />
+            <span className="text-[10px] sm:text-sm pl-1 sm:pl-3">Previous</span>
+          </button>
           <button
             type="submit"
-            onClick={handleNext}
-            className="w-full sm:w-auto px-4 py-2 text-sm font-medium text-center text-black border-2 border-black hover:bg-black hover:text-white transition-colors duration-300"
+            className="flex items-center justify-center w-full bg-primary cursor-pointer py-2 px-2 sm:px-3 transition-all hover:bg-black hover:text-white duration-300 border-2 border-black group"
           >
-            Register
+            <span className="text-[10px] sm:text-sm pr-1 sm:pr-3">
+              {isLastStep ? 'Register' : 'Next'}
+            </span>
+            <Icon 
+              icon="mdi:arrow-right"
+              className="transition-colors duration-300 text-black group-hover:text-white text-lg"
+              width="14"
+              height="14"
+            />
           </button>
         </div>
-      </div>
-    </div>
+      </form>
+    </motion.div>
   );
 };
 

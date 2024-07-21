@@ -107,7 +107,7 @@ h3 {
   @apply flex w-full justify-center md:justify-start mt-0
 }
 .register-button {
-  @apply bg-accent hover:bg-black duration-300 hover:text-white px-32 md:px-9 py-2 md:ms-[1.532rem] border-2 border-black 
+  @apply bg-primary hover:bg-black duration-300 hover:text-white px-32 md:px-9 py-2 md:ms-[1.532rem] border-2 border-black 
 }
 
 .card-container {
@@ -172,5 +172,7 @@ h3 {
 }
 
 .floating-placeholder {
-  @apply absolute -top-3 left-3 bg-emerald-50 px-1 text-base text-black peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-black/30 transition-all
+  @apply absolute left-3 -top-3 bg-emerald-50 px-1 text-sm text-black transition-all peer-placeholder-shown:top-[0.74rem] peer-placeholder-shown:text-base peer-placeholder-shown:text-black/30 peer-focus:-top-3 peer-focus:text-sm peer-focus:text-black
 }
+
+

@@ -68,9 +68,9 @@ const Clubs = ({ onNext, onPrevious, data }) => {
         <div className="max-w-full sm:max-w-3xl mx-auto py-3 sm:py-9 px-2 sm:px-6 bg-orange-50 border-4 border-black relative">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 pb-4 sm:pb-8">
             {options.map(option => (
-              <div
+              <div  key={option.name}
               onClick={() => handleOptionChange(option.name)} className="border-2 border-black">
-                <div key={option.name} className={`h-24 flex flex-row gap-3 items-center  md:py-1 bg-emerald-50 border transition-all duration-300 
+                <div className={`h-24 flex flex-row gap-3 items-center  md:py-1 bg-emerald-50 border transition-all duration-300 
                   ${
                     selectedOptions.includes(option.name) ? 'text-black border-l-8 border-l-accent' : ''
                   }`}>

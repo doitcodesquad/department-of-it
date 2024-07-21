@@ -12,6 +12,9 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        "accent": "#eadef4",
+      },
       scale: {
         '101': '1.01',
         '102': '1.02',
@@ -21,7 +24,7 @@ module.exports = {
         'icon': '2.9rem',
       },
       spacing: {
-        'extra': '111.08%',
+        'extra': '111%',
       },
       width: {
         'ex': '59.124%',

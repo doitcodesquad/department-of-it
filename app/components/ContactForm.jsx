@@ -22,8 +22,7 @@ const ContactForm = () => {
     if (!message) newErrors.message = 'Message is required';
     else if (message.length > 100) newErrors.message = 'Message should not exceed 100 characters.';
 
-    if (!image) newErrors.image = 'Image is required';
-    else if (!['image/jpeg', 'image/png'].includes(image.type)) newErrors.image = 'Only .jpg and .png files are allowed';
+    if (image &&!['image/jpeg', 'image/png'].includes(image.type)) newErrors.image = 'Only .jpg and .png files are allowed';
 
     return newErrors;
   };
@@ -141,9 +140,11 @@ const ContactForm = () => {
                 <div className="mb-4">
                   <button
                     type="submit"
-                    className="w-full bg-primary-100 inline-block text-black no-underline hover:bg-primary-200 py-4 px-4 rounded-md font-medium focus:outline-none transition-all"
+                    className="w-full border-2 text-xl border-black hover:text-white bg-accent inline-block text-black no-underline hover:bg-black py-4 px-4 rounded-md font-medium focus:outline-none transition-all"
                   >
                     Send Message
+                    {/* https://colorhunt.co/palettes/pastel-mint */}
+                    {/* https://mycolor.space/?hex=%23FFF7ED&sub=1 */}
                   </button>
                 </div>
               </form>

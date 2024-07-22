@@ -1,6 +1,8 @@
+'use client'
 import React, { useState } from 'react';
 import { Icon } from '@iconify/react';
-
+import Link from 'next/link';
+import { toast } from 'sonner';
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -36,8 +38,6 @@ const ContactForm = () => {
       setErrors(formErrors);
     } else {
       // Send the form data to your server or API here
-      console.log('Form submitted!');
-
       fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -46,11 +46,26 @@ const ContactForm = () => {
         body: JSON.stringify({ name, email, message, image: image ? image : "" })
       })
         .then((response) => response.json())
-        .then((data) => console.log(data))
-        .catch((error) => console.error(error));
+        .then((data) => {
+          console.log(data);
+          toast.success('Form submitted successfully!', {
+            title: 'Success',
+            description: 'Form has been submitted successfuly!'
+          });
+          // Reset form fields
+          setName('');
+          setEmail('');
+          setMessage('');
+          setImage(null);
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error('An error occurred while submitting the form.', {
+            title: 'Error',
+          });
+        });
     }
   };
-
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -92,7 +107,7 @@ const ContactForm = () => {
           <div className="max-w-xl w-full my-8 rounded-sm">
             <div className="m-4">
               <h1 className="my-4 text-2xl font-medium text-secondary-200">
-                Message me
+                Write to us
               </h1>
               <form onSubmit={handleFormSubmit} encType="multipart/form-data">
                 <div className="relative mb-4">
@@ -178,14 +193,14 @@ const ContactForm = () => {
                   <Icon icon="ic:round-email" className="text-xl md:text-4xl" />
                   <div>
                     <span className="ml-3 text-lg font-medium">Email</span><br />
-                    <span className="ml-3 text-secondary-100 text-sm md:text-base">info@codesquad.com</span>
+                    <Link href="mailto:info@codesquad.org" className="ml-3 text-secondary-100 text-sm md:text-base">info@codesquad.org</Link>
                   </div>
                 </div>
                 <div className="flex items-center mb-8 text-secondary-200">
                   <Icon icon="ic:round-phone" className="text-xl md:text-4xl" />
                   <div>
                     <span className="ml-3 text-lg font-medium">Phone Number</span><br />
-                    <span className="ml-3 text-secondary-100 text-sm md:text-base">+91 123123123</span>
+                    <Link href="tel:7006771144" className="ml-3 text-secondary-100 text-sm md:text-base">+91 7006771144</Link>
                   </div>
                 </div>
                 <div className="flex items-center mb-8 text-secondary-200">

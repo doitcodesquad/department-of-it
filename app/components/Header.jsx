@@ -92,7 +92,7 @@ export default function Header() {
         </div>
         <div className="social">
           <Link href="https://github.com/Naveed-SNR">
-            <Icon icon="uil:github" className="icon" />
+            <Icon icon="jam:instagram" className="icon" />
           </Link>
           <Link href="https://github.com/Naveed-SNR">
             <Icon icon="ic:round-discord" className="icon" />
@@ -139,7 +139,7 @@ export default function Header() {
 
       {/* Mobile Card Container */}
       <div className="card-container-mobile">
-        {cardData.map((card, i) => (
+        {cardData.map((card) => (
           <Link key={card.id} href={card.link}>
             <div className="card-mobile">
               <div className="card-image">

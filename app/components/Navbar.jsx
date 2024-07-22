@@ -46,7 +46,7 @@ export default function Navbar() {
       <nav className="nav-container" >
         <div className="navbar">
           <Link href="/">
-            <div className="title">{`CODESQUAD`}</div>
+            <div className="title transition ease-out delay-100  hover:scale-110  duration-300">{`CODESQUAD`}</div>
           </Link>
           <div className="nav-toggle">
             <button
@@ -84,10 +84,10 @@ export default function Navbar() {
             </button>
           </div>
           <div className="nav-list">
-            <Link className="nav-item" href="/events">Events</Link>
-            <Link className="nav-item" href="/members">Members</Link>
-            <Link className="nav-item" href="/clubs">Clubs</Link>
-            <Link className="nav-item" href="/contact">Contact</Link>
+            <Link className="nav-item  hover:underline underline-offset-8" href="/events">Events</Link>
+            <Link className="nav-item  hover:underline underline-offset-8" href="/members">Members</Link>
+            <Link className="nav-item  hover:underline underline-offset-8" href="/clubs">Clubs</Link>
+            <Link className="nav-item  hover:underline underline-offset-8" href="/contact">Contact</Link>
           </div>
         </div>
         {isOpen && (

@@ -87,12 +87,12 @@ export default function Header() {
   return (
     <div className="header">
       <div className="intro">
-        <div className="intro-text">
+        <div className="intro-text rounded-lg">
           <Type />
         </div>
         <div className="social">
-          <Link href="https://github.com/Naveed-SNR">
-            <Icon icon="jam:instagram" className="icon" />
+          <Link href="https://github.com/Naveed-SNR" >
+            <Icon icon="jam:instagram" className="icon hover:bg-zinc-50 " />
           </Link>
           <Link href="https://github.com/Naveed-SNR">
             <Icon icon="ic:round-discord" className="icon" />

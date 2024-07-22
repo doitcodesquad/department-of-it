@@ -29,7 +29,7 @@ const Details = ({ onNext, onPrevious, data, isFirstStep }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className='min-h-screen bg-emerald-50 p-4 md:p-8'>
+            className='min-h-[90vh] bg-emerald-50 p-4 md:p-8'>
         <h2 className="text-center my-[4.89rem] md:mb-14 sm:max-mb-11">Join with us!</h2>
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto border-4 border-black bg-orange-50 p-4 md:p-6">
           <div className="w-full mb-10 mt-[3rem]">

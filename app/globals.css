@@ -97,7 +97,7 @@ body {
 }
 
 .icon {
-  @apply text-black text-icon md:text-icon p-2 border border-black/30 rounded-full
+  @apply text-black text-icon md:text-icon p-2 border border-black/30 rounded-full hover:border-2 hover:border-black
 }
 
 h1 {

@@ -50,6 +50,7 @@ const ContactForm = () => {
           console.log(data);
           toast.success('Form submitted successfully!', {
             title: 'Success',
+            description: 'Form has been submitted successfuly!'
           });
           // Reset form fields
           setName('');

@@ -62,9 +62,9 @@ const Clubs = ({ onNext, onPrevious, data }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-emerald-50 p-4 md:p-8">
+      className="min-h-[90vh] bg-emerald-50 p-4 md:p-2">
       <div className="md:px-8 px-0">
-        <h2 className='text-center'>Select your interests</h2>
+        <h2 className='text-center my-6'>Select your interests</h2>
         <div className="max-w-full sm:max-w-3xl mx-auto py-3 sm:py-9 px-2 sm:px-6 bg-orange-50 border-4 border-black relative ">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 pb-4 sm:pb-8 ">
             {options.map(option => (

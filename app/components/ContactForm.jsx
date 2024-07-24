@@ -1,110 +1,125 @@
-'use client'
-import React, { useState } from 'react';
-import { Icon } from '@iconify/react';
-import Link from 'next/link';
-import { toast } from 'sonner';
+"use client";
+import React, { useState } from "react";
+import { Icon } from "@iconify/react";
+import Link from "next/link";
+import { toast } from "sonner";
+import Spinner from "./Spinner";
+
 const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};
     const nameRegex = /^[a-zA-Z ]{3,20}$/;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if (!name) newErrors.name = 'Name is required';
-    else if (!nameRegex.test(name)) newErrors.name = 'Invalid name. Only alphabets and spaces are allowed. Minimum length is 3 characters and maximum is 20 characters.';
+    if (!name) newErrors.name = "Name is required";
+    else if (!nameRegex.test(name))
+      newErrors.name =
+        "Invalid name. Only alphabets and spaces are allowed. Minimum length is 3 characters and maximum is 20 characters.";
 
-    if (!email) newErrors.email = 'Email is required';
-    else if (!emailRegex.test(email)) newErrors.email = 'Invalid email address.';
+    if (!email) newErrors.email = "Email is required";
+    else if (!emailRegex.test(email))
+      newErrors.email = "Invalid email address.";
 
-    if (!message) newErrors.message = 'Message is required';
-    else if (message.length > 100) newErrors.message = 'Message should not exceed 100 characters.';
+    if (!message) newErrors.message = "Message is required";
+    else if (message.length > 100)
+      newErrors.message = "Message should not exceed 100 characters.";
 
-    if (image && !['image/jpeg', 'image/png'].includes(image.type)) newErrors.image = 'Only .jpg and .png files are allowed';
+    if (image && !["image/jpeg", "image/png"].includes(image.type))
+      newErrors.image = "Only .jpg and .png files are allowed";
 
     return newErrors;
   };
 
-
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     const formErrors = validateForm();
 
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
+      toast.error("Please correct the errors in the form.", {
+        title: "Error",
+        description: "Please correct the errors in the form.",
+      });
     } else {
-      // Send the form data to your server or API here
-      fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, message, image: image ? image : "" })
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          toast.success('Form submitted successfully!', {
-            title: 'Success',
-            description: 'Form has been submitted successfuly!'
-          });
-          // Reset form fields
-          setName('');
-          setEmail('');
-          setMessage('');
-          setImage(null);
-        })
-        .catch((error) => {
-          console.error(error);
-          toast.error('An error occurred while submitting the form.', {
-            title: 'Error',
-          });
+      setIsLoading(true);
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            message,
+            image: image ? image : "",
+          }),
         });
+        const data = await response.json();
+        console.log(data);
+        toast.success("Form submitted successfully!", {
+          title: "Success",
+          description: "Form has been submitted successfully!",
+        });
+        // Reset form fields
+        setName("");
+        setEmail("");
+        setMessage("");
+        setImage(null);
+      } catch (error) {
+        console.error(error);
+        toast.error("An error occurred while submitting the form.", {
+          title: "Error",
+        });
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
   const handleNameChange = (e) => {
     setName(e.target.value);
-    clearError('name');
+    clearError("name");
   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    clearError('email');
+    clearError("email");
   };
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
-    clearError('message');
+    clearError("message");
   };
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setImage(file);
-    clearError('image');
+    clearError("image");
   };
 
   const clearError = (field) => {
-    setErrors(prevErrors => ({ ...prevErrors, [field]: undefined }));
+    setErrors((prevErrors) => ({ ...prevErrors, [field]: undefined }));
   };
 
   return (
-    <div className="scale-90 p-4 lg:p-9 border-4 border-black rounded-sm items-center  bg-orange-50">
+    <div className="items-center p-4 scale-90 border-4 border-black rounded-sm lg:p-9 bg-orange-50">
       <div className="text-center">
         <h1 className="my-8 text-3xl font-semibold text-primary-100">
           Contact Us
         </h1>
-        <p className="text-secondary-200">
-          {`Let's get in touch`}
-        </p>
+        <p className="text-secondary-200">{`Let's get in touch`}</p>
       </div>
       <div>
-        <div className="md:p-4 flex flex-wrap justify-center items-center w-full">
-          <div className="max-w-xl w-full my-8 rounded-sm">
+        <div className="flex flex-wrap items-center justify-center w-full md:p-4">
+          <div className="w-full max-w-xl my-8 rounded-sm">
             <div className="m-4">
               <h1 className="my-4 text-2xl font-medium text-secondary-200">
                 Write to us
@@ -118,12 +133,15 @@ const ContactForm = () => {
                     placeholder="Full Name"
                     value={name}
                     onChange={handleNameChange}
-                    className="w-full px-3 py-2 h-12 rounded-sm placeholder-transparent text-secondary-100 bg-emerald-50 text-sm border border-black focus:outline-none focus:border-2 focus:border-secondary-100 peer transition-border"
+                    className="w-full h-12 px-3 py-2 text-sm placeholder-transparent border border-black rounded-sm text-secondary-100 bg-emerald-50 focus:outline-none focus:border-2 focus:border-secondary-100 peer transition-border"
+                    disabled={isLoading}
                   />
                   <label htmlFor="name" className="floating-placeholder">
                     Full Name
                   </label>
-                  {errors.name && <span className="text-red-500 text-sm">{errors.name}</span>}
+                  {errors.name && (
+                    <span className="text-sm text-red-500">{errors.name}</span>
+                  )}
                 </div>
                 <div className="relative mb-4">
                   <input
@@ -133,12 +151,15 @@ const ContactForm = () => {
                     placeholder="Email"
                     value={email}
                     onChange={handleEmailChange}
-                    className="w-full px-3 py-2 h-12 rounded-sm placeholder-transparent text-secondary-100 bg-emerald-50 text-sm border border-black focus:outline-none focus:border-2 focus:border-secondary-100 peer transition-border"
+                    className="w-full h-12 px-3 py-2 text-sm placeholder-transparent border border-black rounded-sm text-secondary-100 bg-emerald-50 focus:outline-none focus:border-2 focus:border-secondary-100 peer transition-border"
+                    disabled={isLoading}
                   />
                   <label htmlFor="email" className="floating-placeholder">
                     Email
                   </label>
-                  {errors.email && <span className="text-red-500 text-sm">{errors.email}</span>}
+                  {errors.email && (
+                    <span className="text-sm text-red-500">{errors.email}</span>
+                  )}
                 </div>
                 <div className="relative mb-4">
                   <textarea
@@ -148,66 +169,109 @@ const ContactForm = () => {
                     placeholder="Your Message"
                     value={message}
                     onChange={handleMessageChange}
-                    className="w-full px-3 py-2 rounded-sm placeholder-transparent text-secondary-100 bg-emerald-50 text-sm border border-black focus:outline-none focus:border-2 focus:border-secondary-100 peer"
+                    className="w-full px-3 py-2 text-sm placeholder-transparent border border-black rounded-sm text-secondary-100 bg-emerald-50 focus:outline-none focus:border-2 focus:border-secondary-100 peer"
+                    disabled={isLoading}
                   ></textarea>
                   <label htmlFor="message" className="floating-placeholder">
                     Your Message
                   </label>
-                  {errors.message && <span className="text-red-500 text-sm">{errors.message}</span>}
+                  {errors.message && (
+                    <span className="text-sm text-red-500">
+                      {errors.message}
+                    </span>
+                  )}
                 </div>
-                <div className="bg-emerald-50 border border-black p-3 relative mb-4">
+                <div className="relative p-3 mb-4 border border-black bg-emerald-50">
                   <input
                     type="file"
                     name="image"
                     id="image"
                     onChange={handleImageChange}
-                    className="hidden"  // Hide the default input
+                    className="hidden"
+                    disabled={isLoading}
                   />
                   <label
                     htmlFor="image"
-                    className="bg-orange-50 cursor-pointer border border-black text-black py-2 px-2 md:px-4 rounded-sm font-medium hover:bg-black hover:text-white transition-all inline-block"
+                    className={`bg-orange-50 cursor-pointer border border-black text-black py-2 px-2 md:px-4 rounded-sm font-medium hover:bg-black hover:text-white transition-all inline-block ${
+                      isLoading ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
                   >
                     Choose File
                   </label>
-                  <span className="ml-3">{image ? image.name : "No file selected"}</span>
-                  {errors.image && <span className="text-red-500 text-xs block mt-1">{errors.image}</span>}
+                  <span className="ml-3">
+                    {image ? image.name : "No file selected"}
+                  </span>
+                  {errors.image && (
+                    <span className="block mt-1 text-xs text-red-500">
+                      {errors.image}
+                    </span>
+                  )}
                 </div>
                 <div className="mb-4">
                   <button
                     type="submit"
-                    className="w-full border-2 text-xl border-black hover:text-white bg-primary inline-block text-black no-underline hover:bg-black py-4 px-4 rounded-md font-medium focus:outline-none transition-all"
+                    className={`w-full border-2 text-xl border-black hover:text-white bg-primary inline-block text-black no-underline hover:bg-black py-4 px-4 rounded-md font-medium focus:outline-none transition-all ${
+                      isLoading ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                    disabled={isLoading}
                   >
-                    Send Message
+                    {isLoading ? (
+                      <>
+                        <Spinner />
+                      </>
+                    ) : (
+                      "Send Message"
+                    )}
                   </button>
                 </div>
               </form>
             </div>
           </div>
-          <div className="ms-2 max-w-xl w-full my-8 self-start rounded-sm">
+          <div className="self-start w-full max-w-xl my-8 rounded-sm ms-2">
             <div className="m-4">
               <h1 className="my-4 text-2xl font-medium text-secondary-200">
                 Contact Information
               </h1>
-              <div className="mt-8 p-4 flex flex-col justify-start items-start border-l border-black">
+              <div className="flex flex-col items-start justify-start p-4 mt-8 border-l border-black">
                 <div className="flex items-center mb-8 text-secondary-200">
                   <Icon icon="ic:round-email" className="text-xl md:text-4xl" />
                   <div>
-                    <span className="ml-3 text-lg font-medium">Email</span><br />
-                    <Link href="mailto:info@codesquad.org" className="ml-3 text-secondary-100 text-sm md:text-base">info@codesquad.org</Link>
+                    <span className="ml-3 text-lg font-medium">Email</span>
+                    <br />
+                    <Link
+                      href="mailto:info@codesquad.org"
+                      className="ml-3 text-sm text-secondary-100 md:text-base"
+                    >
+                      info@codesquad.org
+                    </Link>
                   </div>
                 </div>
                 <div className="flex items-center mb-8 text-secondary-200">
                   <Icon icon="ic:round-phone" className="text-xl md:text-4xl" />
                   <div>
-                    <span className="ml-3 text-lg font-medium">Phone Number</span><br />
-                    <Link href="tel:7006771144" className="ml-3 text-secondary-100 text-sm md:text-base">+91 7006771144</Link>
+                    <span className="ml-3 text-lg font-medium">
+                      Phone Number
+                    </span>
+                    <br />
+                    <Link
+                      href="tel:7006771144"
+                      className="ml-3 text-sm text-secondary-100 md:text-base"
+                    >
+                      +91 7006771144
+                    </Link>
                   </div>
                 </div>
                 <div className="flex items-center mb-8 text-secondary-200">
-                  <Icon icon="ic:baseline-location-on" className="text-xl md:text-4xl" />
+                  <Icon
+                    icon="ic:baseline-location-on"
+                    className="text-xl md:text-4xl"
+                  />
                   <div>
-                    <span className="ml-3 text-lg font-medium">Location</span><br />
-                    <span className="ml-3 text-secondary-100 text-sm md:text-base">Tulmullah, Ganderbal - 191201</span>
+                    <span className="ml-3 text-lg font-medium">Location</span>
+                    <br />
+                    <span className="ml-3 text-sm text-secondary-100 md:text-base">
+                      Tulmullah, Ganderbal - 191201
+                    </span>
                   </div>
                 </div>
               </div>

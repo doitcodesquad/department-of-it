@@ -23,6 +23,10 @@ module.exports = {
       },
       fontSize: {
         'icon': '2.9rem',
+        'heading': '7.211rem',
+      },
+      fontWeight: {
+        headline: '1000',
       },
       spacing: {
         'extra': '111%',

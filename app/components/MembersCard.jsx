@@ -1,34 +1,49 @@
 import React from "react";
-import { FaFacebook, FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+import Image from "next/image";
+import { FaGithub, FaFacebook, FaTwitter, FaLinkedin, FaGlobe } from "react-icons/fa";
+import DefaultIcon from "@/public/images/default-avatar.png";
 
-const MembersCard = ({ name, role, email, bio, image }) => {
+const MembersCard = ({ name, role, email, bio, image, socials }) => {
+  const socialIcons = {
+    github: FaGithub,
+    facebook: FaFacebook,
+    twitter: FaTwitter,
+    linkedin: FaLinkedin,
+    portfolio: FaGlobe,
+  };
+
   return (
-    <div className="w-80 max-w-full bg-orange-50 rounded-lg shadow-lg overflow-hidden mb-6 border-2 border-slate-950">
-      <div className="p-6 flex flex-col items-center text-center">
-        <img
-          src={image}
+    <div className="max-w-full mb-6 overflow-hidden border-2 rounded-lg shadow-lg w-80 bg-orange-50 border-slate-950">
+      <div className="flex flex-col items-center p-6 text-center">
+        <Image
+          src={image || DefaultIcon}
           alt="Avatar"
-          className="w-24 h-24 rounded-full mb-4"
+          className="w-24 h-24 mb-4 rounded-full"
+          width={96}
+          height={96}
         />
-        <h2 className="text-xl font-bold mb-1">{name}</h2>
-        <span className="text-gray-600 text-sm mb-1">{role}</span>
-        <a href={`mailto:${email}`} className="text-blue-600 text-sm mb-4">
+        <h2 className="mb-1 text-xl font-bold">{name}</h2>
+        <span className="mb-1 text-sm text-gray-600">{role}</span>
+        <a href={`mailto:${email}`} className="mb-4 text-sm text-blue-600">
           {email}
         </a>
-        <p className="text-gray-600 text-sm mb-4">{bio}</p>
-        <div className="flex space-x-2 mb-4">
-          <button className="p-2 text-gray-600 hover:text-gray-800">
-            <FaFacebook size={24} />
-          </button>
-          <button className="p-2 text-gray-600 hover:text-gray-800">
-            <FaTwitter size={24} />
-          </button>
-          <button className="p-2 text-gray-600 hover:text-gray-800">
-            <FaLinkedin size={24} />
-          </button>
-          <button className="p-2 text-gray-600 hover:text-gray-800">
-            <FaGithub size={24} />
-          </button>
+        <p className="mb-4 text-sm text-gray-600">{bio}</p>
+        <div className="flex mb-4 space-x-2">
+          {socials &&
+            socials.map((social, index) => {
+              const SocialIcon = socialIcons[social.platform];
+              return SocialIcon ? (
+                <a
+                  key={index}
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-gray-600 hover:text-gray-800"
+                >
+                  <SocialIcon size={24} />
+                </a>
+              ) : null;
+            })}
         </div>
       </div>
     </div>

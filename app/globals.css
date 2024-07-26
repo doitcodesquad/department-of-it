@@ -194,3 +194,10 @@ h3 {
   content: '';
   @apply absolute z-40 h-full w-full left-0 top-0 border-l-8 border-l-red-400;
 }
+.hide-scrollbar{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  @apply hidden;
+}

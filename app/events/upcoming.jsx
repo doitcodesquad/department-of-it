@@ -101,7 +101,7 @@ const Upcoming = () => {
 
   return (
     <div className='bg-emerald-50 mb-[20vh]  '>
-      <div className="container  lg:px-20">
+      <div className="lg:px-20">
       
         <h1 className="text-3xl  font-bold text-center border-t-2 border-black/70 my-8"> <p className='mt-10'> Upcoming Events </p></h1>
         <motion.div

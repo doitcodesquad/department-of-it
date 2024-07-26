@@ -106,7 +106,7 @@ const Upcoming = () => {
         <h1 className="text-3xl  font-bold text-center border-t-2 border-black/70 my-8"> <p className='mt-10'> Upcoming Events </p></h1>
         <motion.div
           ref={containerRef}
-          className="flex overflow-x-auto hide-scrollbar"
+          className="flex overflow-x-auto hide-scroll"
           onWheel={handleWheel}
         >
           <div className="flex">

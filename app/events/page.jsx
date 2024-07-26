@@ -1,7 +1,16 @@
-import React from "react";
+import React from 'react';
+import Past from "./past";
+import Upcoming from "./upcoming";
+import Main from "./main";
 
-const page = () => {
-  return <>Events Page</>;
-};
+export default function page() {
+  return (
+    <>
+    <Main/>
+    <Upcoming/>
+    <Past/>
 
-export default page;
+    </>
+    
+  )
+}

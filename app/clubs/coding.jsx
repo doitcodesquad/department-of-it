@@ -45,6 +45,10 @@ export default function ClubDetails() {
                             <Icon icon="streamline:group-meeting-call-solid" />
                             <p>Meets {`Meets ${clubData.meetingDay} at ${clubData.meetingTime}`}</p>
                         </div>
+                        <div className="md:flex hidden md:w-1/2 md:absolute left-full translate-x-0 md:z-40 bottom-0 -translate-y-14 md:left-[10.721rem] border-l border-t border-black justify-center items-center gap-3 text-xl mt-3 font-thin h-11 md:py-4 px-8">
+                    <Icon icon="streamline:group-meeting-call-solid" />
+                    <p>Meets Tuesdays at 7PM</p>
+                </div>
                     </div>
 
 
@@ -69,10 +73,7 @@ export default function ClubDetails() {
                         </div>
                     </div>
                 </div>
-                <div className="flex md:w-1/2 md:absolute md:z-40 md:bottom-0 md:left-[10.721rem] border-l border-t border-black justify-center items-center gap-3 text-xl mt-3 font-thin h-11 md:py-4 px-8">
-                    <Icon icon="streamline:group-meeting-call-solid" />
-                    <p>Meets Tuesdays at 7PM</p>
-                </div>
+
 
             </div>
         </div>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Link from 'next/link';
 
@@ -10,7 +9,7 @@ export default function Main() {
         Code Squad Inauguration
       </h1>
       <p className="text-lg md:text-xl text-center text-gray-600 mb-8 max-w-3xl relative z-10">
-      formal ceremony to mark the beginning of a major public leader's term of office, or official opening or beginning of an institution or structure.  
+      {`formal ceremony to mark the beginning of a major public leader's term of office, or official opening or beginning of an institution or structure.`}  
         <span className="text-black font-semibold"> high-quality web applications </span>
         for example, a bridge.
       </p>

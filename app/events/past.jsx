@@ -1,5 +1,5 @@
-"use client";
-import React, { useState, useEffect } from 'react';
+
+import React from 'react';
 import Image from 'next/image';
 
 const TemplateCard = ({ title, imageSrc }) => (
@@ -22,6 +22,7 @@ const TemplateCard = ({ title, imageSrc }) => (
 );
 
 const Past = () => {
+  
   const templates = [
     { id: 1, title: "Next.js Templates", imageSrc: "/Map.svg" },
     { id: 2, title: "Svelte Templates", imageSrc: "/Map.svg" },
@@ -36,7 +37,7 @@ const Past = () => {
 
   return (
 
-    <div className="w-full min-h-96 mb-3 flex flex-col justify-center items-center px-48 brr">
+    <div className="w-full min-h-96 mb-3 flex flex-col justify-center items-center px-48">
       <h1 className="mb-24 text-4xl font-bold">
         Event Gallery
       </h1>

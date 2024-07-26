@@ -22,7 +22,7 @@ export default function ClubsPage() {
   }, [activeTab]);
 
   return (
-    <div className="relative container md:mt-3 md:px-3">
+    <div className="relative md:mt-3 md:px-3">
 
 
       {/* Club content */}

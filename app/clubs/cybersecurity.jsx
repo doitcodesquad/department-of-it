@@ -125,7 +125,7 @@ export default function ClubDetails() {
                     <div className="ms-[11rem] h-32 md:h-96 border border-black"></div>
                     <div className="md:mt-11 w-full  md:w-9/12 h-fit p-3 md:p-11 border border-black">
                         <div className="text-4xl font-bold">What we do?</div>
-                        <div className="text-black/90 my-3">Here's a few skills that we focus on. We host a number of activites to help you develop useful experiences and enhance your creativity and productivity.</div>
+                        <div className="text-black/90 my-3">{`Here's a few skills that we focus on. We host a number of activites to help you develop useful experiences and enhance your creativity and productivity.`}</div>
                         <div className="flex flex-wrap justify-center md:justify-start gap-3">
                             <div className="flex flex-col gap-3 justify-center items-center bg-orange-50 w-24 h-24 min-w-24 min-h-24 md:w-32 md:h-32
                              p-3 border border-black">

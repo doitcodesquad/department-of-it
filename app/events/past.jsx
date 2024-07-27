@@ -45,10 +45,10 @@ const Past = () => {
         
         <div className="flex h-full flex-col col-span-2 place-self-center self-center ">
           <div className="">
-            <h1 className="  py-3 text-4xl font-bold">
+            {/* <h1 className="  py-3 text-4xl font-bold">
               Event Gallery
-            </h1>
-            <div className="  pb-3 text-2xl ">
+            </h1> */}
+            <div className="  py-3 text-2xl ">
               A list of our past events
             </div>
           </div>

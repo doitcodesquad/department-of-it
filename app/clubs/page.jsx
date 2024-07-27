@@ -8,9 +8,9 @@ export default function ClubsPage() {
 
   const clubs = [
     { id: 'coding', name: 'Coding' },
+    { id: 'research', name: 'Research' },
+    { id: 'cybersecurity', name: 'Cyber Security' },
     { id: 'gate', name: 'Gate' },
-    { id: 'gate', name: 'Cyber Security' },
-    { id: 'gate', name: 'Research' },
   ];
 
   useEffect(() => {
@@ -34,8 +34,8 @@ export default function ClubsPage() {
               <button
                 key={club.id}
                 className={`w-32 py-2 mt-1 md:text-md text-sm border font-semibold border-black ${activeTab === club.id
-                    ? 'bg-orange-400   text-white rounded-sm   '
-                    : 'bg-orange-50 text-gray-700'
+                    ? 'bg-accent rounded-sm   '
+                    : 'bg-primary'
                   }`}
                 onClick={() => setActiveTab(club.id)}
               >

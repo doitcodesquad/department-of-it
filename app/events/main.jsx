@@ -23,18 +23,20 @@ export default function Main() {
   }
 
   return (
-    <div className="bg-[url('/Pic.png')] object-cover text-black min-h-screen flex flex-col justify-center items-center p-4 relative overflow-hidden">
-      <h1 className="text-5xl md:text-7xl font-bold text-center mb-6 relative z-20">
-        {event.name}
-      </h1>
-      <p className="text-lg md:text-xl text-center text-gray-600 mb-8 max-w-3xl relative z-10">
-        {event.description}
-      </p>
-      <div className="register-button-container md:justify-center justify-center z-20">
-        <Link href={`/events/register/${event.id}`} className="register-button">
-          Register
-        </Link>
+      <div className="h-screen w-full flex justify-center">
+        <div className="h-[83%] mt-8 w-11/12 bg-[url('/Pic.png')] object-cover text-black border border-black flex flex-col justify-center items-center  relative">
+          <h1 className="text-5xl md:text-7xl font-bold text-center mb-8 relative z-20">
+            {event.name}
+          </h1>
+          <p className="text-lg md:text-xl text-center text-gray-600 mb-8 max-w-3xl relative z-10">
+            {event.description}
+          </p>
+          <div className="register-button-container md:justify-center justify-center z-20">
+            <Link href={`/events/register/${event.id}`} className="register-button">
+              Register
+            </Link>
+          </div>
+        </div>
       </div>
-    </div>
   );
 }

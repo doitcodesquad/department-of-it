@@ -2,8 +2,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
-const EventCard = ({ image, title, description, onCardEnter, onCardLeave }) => (
-  <motion.div className="flex-shrink-0 w-80 rounded p-2 border border-black shadow-lg m-4 bg-orange-50 flex flex-col ">
+const EventCard = ({ image, date, title, description, onCardEnter, onCardLeave }) => (
+  <motion.div className="scale-103 relative flex-shrink-0 w-80 p-2 border border-black shadow-lg m-4  flex flex-col ">
     <div 
       className="relative"
       onMouseEnter={onCardEnter}
@@ -12,15 +12,20 @@ const EventCard = ({ image, title, description, onCardEnter, onCardLeave }) => (
      <div>
       <img className="w-full h-48 object-cover" src={image} alt={title} />   
       <ul className='flex flex-col'>
-        <li className='p-2 text-lg font-semibold '>{title}</li>
-        <li className='px-4 text-sm pb-8 text-gray-500'>{description}</li>
+        <li className=' mt-4 bg-primary w-max text-md px-3 py-1 font-thin'>{date}</li>
+        <li className='my-2 ms-1 text-xl font-medium '>{title}</li>
+        <li className='ms-1 text-sm pb-8 mb-3 text-gray-500'>{description}</li>
       </ul>
+
     
     
    
      
       </div>
     </div>
+      <div>
+        <button className="absolute bottom-0 right-0 bg-primary border-t border-l border-black py-2 px-4">Register</button>
+      </div>
      
   </motion.div>
 );
@@ -30,28 +35,28 @@ const Upcoming = () => {
     {
       id: 1,
       image: "https://img.freepik.com/free-vector/elegant-event-party-banner-with-black-splash_1361-2171.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1721692800&semt=sph",
-      title: "Elegant Event",
+      title: "Competitive Coding",
       date: "12/03/2024",
       description: "Event details are on the way!"
     },
     {
       id: 2,
       image: "https://i.pinimg.com/736x/90/cd/50/90cd505852aa3ec035899d140565dac4.jpg",
-      title: "Party Event",
+      title: "Gaming Tournament",
       date: "12/03/2024",
       description: "Event detail fdjh dfhfh hdfjh sdf ihjfiss are on the way!"
     },
     {
       id: 3,
       image: "https://thumbs.dreamstime.com/b/abstract-poster-event-template-fluid-shapes-composition-modern-event-poster-template-futuristic-design-posters-liquid-color-152203412.jpg",
-      title: "Plantation Drive",
+      title: "Debugging",
       date: "12/03/2024",
       description: "Event details are on the way!kdfb iudf bnj bdsfvh jsbvids bv dbs fvbdfvb dsv nd si ndkvbn"
     },
     {
       id: 4,
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmqLQvhKLvK58cnBf5SzXnFF-obyQRLYCtgw&s",
-      title: "Design Fest",
+      title: "Design",
       description: "Event details are on the way!",
       date: "12/03/2024"
     }
@@ -103,10 +108,10 @@ const Upcoming = () => {
     <div className='bg-emerald-50 mb-[20vh]  '>
       <div className="lg:px-20">
       
-        <h1 className="text-3xl  font-bold text-center border-t-2 border-black/70 my-8"> <p className='mt-10'> Upcoming Events </p></h1>
+        <h1 className="text-3xl  font-bold text-center border-t-2 border-black my-8"> <p className='mt-10'> Upcoming Events </p></h1>
         <motion.div
           ref={containerRef}
-          className="flex overflow-x-auto hide-scroll"
+          className="flex overflow-x-auto hide-scroll border-b-2 border-black pb-11"
           onWheel={handleWheel}
         >
           <div className="flex">

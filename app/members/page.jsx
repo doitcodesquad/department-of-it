@@ -34,18 +34,18 @@ const MembersPage = () => {
       ],
     },
     {
-      name: " Sameem Makdoomi",
+      name: "Mohammad Ikhlas",
       role: "core",
-      email: "ft10101@gmail.com",
-      bio: "President",
+      email: "mohammadikhlas99@gmail.com",
+      bio: "Frontend Developer",
       socials: [
-        { platform: "github", link: "https://github.com/ft10101" },
-        { platform: "portfolio", link: "https://devdaim.vercel.app" },
+        { platform: "github", link: "https://github.com/mikhlas9" },
+        { platform: "portfolio", link: "https://ikhlas-portfolio.vercel.app" },
         {
           platform: "linkedin",
-          link: "https://www.linkedin.com/in/daimzahoorit/",
+          link: "https://www.linkedin.com/in/mohammad-ikhlas-a339b12a2/",
         },
-        { platform: "twitter", link: "https://x.com/DevDaim" },
+        { platform: "twitter", link: "https://x.com/m_ikhlas9" },
       ],
     },
     {
@@ -64,12 +64,12 @@ const MembersPage = () => {
       ],
     },
     {
-      name: "Muhammad Ikhlas",
+      name: " Sameem Makdoomi",
       role: "core",
-      email: "muhammadikhlas99@gmail.com",
-      bio: "Frontend Developer",
+      email: "ft10101@gmail.com",
+      bio: "President",
       socials: [
-        { platform: "github", link: "https://github.com/muhammad.ikhlas" },
+        { platform: "github", link: "https://github.com/ft10101" },
         { platform: "portfolio", link: "https://devdaim.vercel.app" },
         {
           platform: "linkedin",

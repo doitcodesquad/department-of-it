@@ -22,11 +22,7 @@ export default function ClubsPage() {
   }, [activeTab]);
 
   return (
-    <div className="relative md:mt-3 md:px-3">
-
-
-      {/* Club content */}
-      <div className=" md:mx-8">
+    <div className="relative md:px-11 md:ms-3">
         {/* Club navigation */}
         <div className="hide-scroll md:absolute z-30 flex justify-start md:justify-end w-full  overflow-x-scroll px-3 md:px-[5.4rem]  py-2 ">
           <div className="flex max-w-content gap-2 xl:me-2">
@@ -45,7 +41,7 @@ export default function ClubsPage() {
           </div>
         </div>
         {ActiveClub && <ActiveClub />}
-      </div>
+
     </div>
   );
 }

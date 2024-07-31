@@ -26,21 +26,24 @@ body {
  overflow-x: hidden;
 }
 
-body > div
+/* body > div
 {
   @apply pt-14 md:pt-[5.42rem];
-}
+} */
 
 .title {
   @apply ms-2 text-2xl lg:text-4xl text-black font-bold py-3
 }
 
 .nav-container {
-  @apply flex justify-between items-center w-screen fixed top-0 z-40 backdrop-blur-md md:px-11;
+  @apply flex justify-between items-center w-screen h-max sticky bg-emerald-50/30
+
+
+   top-0 z-40 backdrop-blur-md md:px-11; 
 }
 /* Navbar styles */
 .navbar {
-  @apply flex justify-between items-center w-full border-b-2 border-black
+  @apply sticky top-0 flex justify-between items-center w-full border-b-2 border-black
 }
 /* .navbar::before {
   @apply  sticky bg-black w-screen z-40 top-0 left-0

@@ -104,7 +104,7 @@ export default function ClubDetails() {
 
     return (
         <>
-            <div className="flex flex-wrap md:flex-nowrap md:h-[83%] h-full w-full bg-emerald-50 md:border border-black relative overflow-hidden">
+            <div className="flex flex-wrap md:flex-nowrap mt-8 md:h-[83%] h-full w-full bg-emerald-50 md:border border-black relative overflow-hidden">
                 <div className="flex flex-col md:w-[62.3%]">
                     <div className="w-full md:w-1/2 border-b border-t md:border-t-0 border-r border-black py-2 flex justify-center items-center text-lg md:text-xl">
                         <div className="flex gap-3">

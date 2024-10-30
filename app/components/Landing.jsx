@@ -4,8 +4,8 @@ import React, { useEffect, useRef } from 'react';
 import { Icon } from '@iconify/react';
 import Image from 'next/image'
 import test from '/public/computer.svg'
-import coding from '../../public/coding.svg'
-import hero from '../../public/hacker.png'
+// import coding from '../../public/coding.svg'
+// import hero from '../../public/hacker.png'
 
 const LandingPage = () => {
   const canvasRef = useRef(null);

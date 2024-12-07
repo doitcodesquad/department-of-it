@@ -1,6 +1,6 @@
 import { SessionProviderNextAuth } from "./Providers";
 import "./globals.css";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import { ToasterProvider } from './ToasterProvider'
 
 export const metadata = {

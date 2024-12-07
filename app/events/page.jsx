@@ -1,5 +1,5 @@
 import React from 'react';
-import Past from "./past";
+import Gallery from "./gallery";
 import Upcoming from "./upcoming";
 import Main from "./main";
 
@@ -8,7 +8,7 @@ export default function page() {
     <>
     <Main/>
     <Upcoming/>
-    <Past/>
+    <Gallery/>
 
     </>
     

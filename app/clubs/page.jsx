@@ -8,9 +8,9 @@ export default function ClubsPage() {
 
   const clubs = [
     { id: 'coding', name: 'Coding' },
+    { id: 'research', name: 'Research' },
+    { id: 'cybersecurity', name: 'Cyber Security' },
     { id: 'gate', name: 'Gate' },
-    { id: 'gate', name: 'Cyber Security' },
-    { id: 'gate', name: 'Research' },
   ];
 
   useEffect(() => {
@@ -22,11 +22,7 @@ export default function ClubsPage() {
   }, [activeTab]);
 
   return (
-    <div className="relative md:mt-3 md:px-3">
-
-
-      {/* Club content */}
-      <div className=" md:mx-8">
+    <div className="relative md:px-11 md:ms-3">
         {/* Club navigation */}
         <div className="hide-scroll md:absolute z-30 flex justify-start md:justify-end w-full  overflow-x-scroll px-3 md:px-[5.4rem]  py-2 ">
           <div className="flex max-w-content gap-2 xl:me-2">
@@ -34,8 +30,8 @@ export default function ClubsPage() {
               <button
                 key={club.id}
                 className={`w-32 py-2 mt-1 md:text-md text-sm border font-semibold border-black ${activeTab === club.id
-                    ? 'bg-orange-400   text-white rounded-sm   '
-                    : 'bg-orange-50 text-gray-700'
+                    ? 'bg-accent rounded-sm   '
+                    : 'bg-primary'
                   }`}
                 onClick={() => setActiveTab(club.id)}
               >
@@ -45,7 +41,7 @@ export default function ClubsPage() {
           </div>
         </div>
         {ActiveClub && <ActiveClub />}
-      </div>
+
     </div>
   );
 }

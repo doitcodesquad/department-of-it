@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['your-domain.com'], // Add your domain if images are hosted externally
+        domains: ['img.freepik.com', 'i.pinimg.com', 'thumbs.dreamstime.com', 'encrypted-tbn0.gstatic.com']// Add your domain if images are hosted externally
       },
 };
 

@@ -1,0 +1,47 @@
+.title {
+    @apply ms-2 text-2xl lg:text-4xl text-black font-bold py-3
+  }
+  
+  .nav-container {
+    @apply flex justify-between items-center w-screen h-max sticky 
+     top-0 z-40 backdrop-blur-md md:px-11; 
+  }
+  /* Navbar styles */
+  .navbar {
+    @apply sticky top-0 flex justify-between items-center w-full border-b-2 border-black
+  }
+  .nav-bg {
+   @apply bg-emerald-50/30
+
+  }
+  /* .navbar::before {
+    @apply  sticky bg-black w-screen z-40 top-0 left-0
+  } */
+  
+  .nav-list {
+    @apply me-2 text-black lg:flex gap-2 text-2xl font-medium hidden;
+  }
+  
+  .nav-item {
+    @apply  pl-8;
+  }
+  
+  .nav-toggle {
+    @apply lg:hidden;
+  }
+  
+  /* Mobile menu styles */
+  .mobile-nav-list {
+    @apply fixed top-0 right-0 h-screen w-full bg-emerald-50 shadow-lg z-50 overflow-y-auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overscroll-behavior: contain;
+  }
+  
+  .nav-item-mobile {
+    @apply p-4 text-black text-2xl;
+  }
+  

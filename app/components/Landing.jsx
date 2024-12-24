@@ -1,5 +1,6 @@
-"use client"
+'use client'
 import React, { useEffect, useRef } from 'react';
+import Link from 'next/link';
 
 import { Icon } from '@iconify/react';
 import Image from 'next/image'
@@ -129,9 +130,9 @@ const LandingPage = () => {
             <p className="text-xl md:text-2xl mb-8">
               Uniting Creativity and Code, Powering Innovation
             </p>
-            <button className="bg-primary border-2 border-black  px-24 py-3">
-              Join Us
-            </button>
+            <Link href="/register" className="register-button  px-24 py-3">
+            Join Us
+            </Link>
           </div>
           <div className="flex flex-col items-center justify-center -translate-y-[14.42rem] md:translate-y-0">
             <div className="w-3 h-3 bg-black rounded-full"></div>

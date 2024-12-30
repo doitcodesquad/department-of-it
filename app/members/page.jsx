@@ -64,6 +64,21 @@ const MembersPage = () => {
       ],
     },
     {
+      name: "Shakir Shakeel Shah",
+      role: "core",
+      email: "shkr.sh@icloud.com",
+      bio: "UI/UX Designer",
+      socials: [
+        { platform: "github", link: "https://github.com/shakirshakeelshah" },
+        { platform: "portfolio", link: "https://devdaim.vercel.app" },
+        {
+          platform: "linkedin",
+          link: "https://www.linkedin.com/in/shakirshakeelshah/",
+        },
+        { platform: "twitter", link: "https://x.com/DevDaim" },
+      ],
+    },
+    {
       name: " Sameem Makdoomi",
       role: "core",
       email: "ft10101@gmail.com",

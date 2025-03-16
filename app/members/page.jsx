@@ -1,184 +1,305 @@
-import React from "react";
-import MembersCard from "../components/MembersCard";
+"use client";
+import React, { useState, useMemo, useCallback } from 'react';
+import {
+  ChevronDown, ChevronRight, GithubIcon, Linkedin,
+  ExternalLink, Twitter, User, Users, Code,
+  Shield, Palette, Briefcase, Mail
+} from 'lucide-react';
 
-const MembersPage = () => {
-  const coreTeam = [
+const ModernTeamHierarchy = () => {
+  const allMembers = [
     {
-      name: "Daim Zahoor",
-      role: "core",
-      email: "daimdev6@gmail.com",
-      bio: "Web Developer Lead",
-      socials: [
-        { platform: "github", link: "https://github.com/devdaim6" },
-        { platform: "portfolio", link: "https://devdaim.vercel.app" },
-        {
-          platform: "linkedin",
-          link: "https://www.linkedin.com/in/daimzahoorit/",
-        },
-        { platform: "twitter", link: "https://x.com/DevDaim" },
-      ],
-    },
-    {
-      name: "Naveed SNR",
-      role: "core",
-      email: "sheikhnaveed3660@gmail.com",
-      bio: "Coding Lead",
-      socials: [
-        { platform: "github", link: "https://github.com/naveedsnr" },
-        { platform: "portfolio", link: "https://devdaim.vercel.app" },
-        {
-          platform: "linkedin",
-          link: "https://www.linkedin.com/in/daimzahoorit/",
-        },
-        { platform: "twitter", link: "https://x.com/DevDaim" },
-      ],
-    },
-    {
-      name: "Mohammad Ikhlas",
-      role: "core",
-      email: "mohammadikhlas99@gmail.com",
-      bio: "Frontend Developer",
-      socials: [
-        { platform: "github", link: "https://github.com/mikhlas9" },
-        { platform: "portfolio", link: "https://ikhlas-portfolio.vercel.app" },
-        {
-          platform: "linkedin",
-          link: "https://www.linkedin.com/in/mohammad-ikhlas-a339b12a2/",
-        },
-        { platform: "twitter", link: "https://x.com/m_ikhlas9" },
-      ],
-    },
-    {
-      name: "Tawseef Shamim",
-      role: "core",
-      email: "tawseefshamim@gmail.com",
-      bio: "UI/UX Designer",
-      socials: [
-        { platform: "github", link: "https://github.com/TAWSEEFSHAMIM" },
-        { platform: "portfolio", link: "https://devdaim.vercel.app" },
-        {
-          platform: "linkedin",
-          link: "https://www.linkedin.com/in/daimzahoorit/",
-        },
-        { platform: "twitter", link: "https://x.com/DevDaim" },
-      ],
-    },
-    {
-      name: "Shakir Shakeel Shah",
-      role: "core",
-      email: "shkr.sh@icloud.com",
-      bio: "UI/UX Designer",
-      socials: [
-        { platform: "github", link: "https://github.com/shakirshakeelshah" },
-        { platform: "portfolio", link: "https://devdaim.vercel.app" },
-        {
-          platform: "linkedin",
-          link: "https://www.linkedin.com/in/shakirshakeelshah/",
-        },
-        { platform: "twitter", link: "https://x.com/DevDaim" },
-      ],
-    },
-    {
-      name: " Sameem Makdoomi",
-      role: "core",
+      name: "Peerzada Mohammad Sameem Makhdoomi",
+      role: "President",
       email: "ft10101@gmail.com",
-      bio: "President",
+      bio: "President of Code Squad",
       socials: [
         { platform: "github", link: "https://github.com/ft10101" },
         { platform: "portfolio", link: "https://devdaim.vercel.app" },
-        {
-          platform: "linkedin",
-          link: "https://www.linkedin.com/in/daimzahoorit/",
-        },
-        { platform: "twitter", link: "https://x.com/DevDaim" },
-      ],
+        { platform: "linkedin", link: "https://www.linkedin.com/in/daimzahoorit/" },
+        { platform: "twitter", link: "https://x.com/DevDaim" }
+      ]
     },
+
+    // Club Leads
+
     {
-      name: "Ayaan",
-      role: "core",
+      name: "Ayaan Khursheed",
+      role: "Cyber Security Club Lead",
       email: "ccyssn@gmail.com",
-      bio: "Cyber Security Lead",
+      bio: "Master security skills, tackle real-world challenges, and collaborate on innovative solutions",
       socials: [
         { platform: "github", link: "https://github.com/ccyssn" },
         { platform: "portfolio", link: "https://devdaim.vercel.app" },
-        {
-          platform: "linkedin",
-          link: "https://www.linkedin.com/in/daimzahoorit/",
-        },
-        { platform: "twitter", link: "https://x.com/DevDaim" },
-      ],
+        { platform: "linkedin", link: "https://www.linkedin.com/in/daimzahoorit/" },
+        { platform: "twitter", link: "https://x.com/DevDaim" }
+      ]
     },
+    {
+      name: "Faiqa Hilal",
+      role: "Research Club Lead",
+      email: "NA",
+      bio: "Innovate and collaborate on cutting-edge research initiatives",
+      socials: []
+    },
+    {
+      name: "Huzaifa Javid",
+      role: "Gate Club Lead",
+      email: "NA",
+      bio: "Prepare for the Graduate Aptitude Test in Engineering through workshops and mock tests",
+      socials: []
+    },
+    {
+      name: "Tariq Hameed",
+      role: "Ignite Startup Club Lead",
+      email: "NA",
+      bio: "A hub where visionary ideas meet creative minds to ignite growth and transformation",
+      socials: []
+    },
+    // B-Tech Members
+    ...[
+      {
+        name: "Daim Zahoor",
+        email: "daimdev6@gmail.com",
+        bio: "Software Developer",
+        image: "https://avatars.githubusercontent.com/u/123406647?v=4&size=64",
+        socials: [
+          { platform: "github", link: "https://github.com/devdaim6" },
+          { platform: "portfolio", link: "https://devdaim.vercel.app" },
+          { platform: "linkedin", link: "https://www.linkedin.com/in/daimzahoorit/" },
+          { platform: "twitter", link: "https://x.com/DevDaim" }
+        ]
+      },
+      {
+        name: "Sheikh Naveed",
+        email: "sheikhnaveed3660@gmail.com",
+        bio: "Software Developer",
+        socials: [
+          { platform: "github", link: "https://github.com/naveedsnr" },
+          { platform: "portfolio", link: "https://naveedsnr.vercel.app" },
+          { platform: "linkedin", link: "https://www.linkedin.com/in/naveedsnr/" },
+        ]
+      },
+      {
+        name: "Mohd Ikhlas",
+        email: "mohammadikhlas99@gmail.com",
+        bio: "Software Developer",
+        socials: [
+          { platform: "github", link: "https://github.com/mikhlas9" },
+          { platform: "portfolio", link: "https://ikhlas-portfolio.vercel.app" },
+          { platform: "linkedin", link: "https://www.linkedin.com/in/mohammad-ikhlas-a339b12a2/" },
+          { platform: "twitter", link: "https://x.com/m_ikhlas9" }
+        ]
+      },
+      "Sabit Aslam", "Muskaan Parvaiz", "Shireen Iqeel", "Zaibindah",
+      "Insha Javaid", "Taweheda Bashir", "Mohd Aneek", "Hamid Farooq",
+      "Mohd Akeeb", "Tayamun Tariq", "Bashee Bilal", "Duha Shah", {
+        name: "Amaan Parvaiz",
+        socials: [
+          { platform: "github", link: "https://github.com/amaanparvaiz" },
+          { platform: "linkedin", link: "https://www.linkedin.com/in/amaanparvaiz" }
+        ]
+      },
+    ].map(member => typeof member === 'string' ? {
+      name: member,
+      role: "B-Tech Member",
+      email: "NA",
+      bio: "NA",
+      socials: []
+    } : {
+      ...member,
+      role: "B-Tech Member",
+      bio: member.bio || "NA",
+      socials: member.socials || []
+    }),
+    // M-Tech Members
+    ...[
+      "Madeeha",
+      "Ishtiyaq Ahmad", "Naveed Bhat", "Umer Zahoor", "Adfar Shah",
+      "Anamul Showkat", "Beenish Bashir"
+    ].map(member => typeof member === 'string' ? {
+      name: member,
+      role: "M-Tech Member",
+      email: "NA",
+      bio: "NA",
+      socials: []
+    } : {
+      ...member,
+      role: "M-Tech Member",
+      email: "NA",
+      bio: "NA"
+    })
   ];
 
-  const contributors = [
-    {
-      name: "Basee Bashir",
-      role: "Contributor",
-      email: "baseebashir@gmail.com",
-      bio: "I contribute to the project and assist in various tasks.",
-    },
-    {
-      name: "Amaan Parvaiz",
-      role: "Contributor",
-      email: "amaanparvaiz@gmail.com",
-      bio: "I contribute to the project and assist in various tasks.",
-    },
-  ];
+  const getPriority = useCallback((role) => {
+    const priorities = {
+      'President': 1,
+      'Research Club Lead': 2,
+      'Cyber Security Club Lead': 2,
+      'Ignite Startup Club Lead': 2,
+      'Gate Club Lead': 2,
+      'Software Developer': 3,
+      'B-Tech Member': 3,
+      'M-Tech Member': 4
+    };
+    return priorities[role] || 5;
+  }, []);
 
-  const socialMediaOutreach = [
-    {
-      name: "Meer Aiman",
-      role: "Social Media Coordinator",
-      email: "meeraiman@gmail.com",
-      bio: "I manage social media outreach and communications.",
-    },
-    {
-      name: "Falak Naaz",
-      role: "Social Media Coordinator",
-      email: "falaknaaz@gmail.com",
-      bio: "I manage social media outreach and communications.",
-    },
-  ];
+  const roleThemes = useMemo(() => ({
+    'President': { bg: 'from-purple-600 to-indigo-600', border: 'border-purple-400' },
+    'Ignite Startup Club Lead': { bg: 'from-blue-600 to-cyan-500', border: 'border-blue-400' },
+    'Cyber Security Club Lead': { bg: 'from-red-600 to-pink-500', border: 'border-red-400' },
+    'Research Club Lead': { bg: 'from-green-600 to-emerald-500', border: 'border-green-400' },
+    'Gate Club Lead': { bg: 'from-teal-600 to-sky-500', border: 'border-teal-400' },
+    'B-Tech Member': { bg: 'from-sky-600 to-cyan-400', border: 'border-sky-400' },
+    'M-Tech Member': { bg: 'from-orange-600 to-amber-500', border: 'border-orange-400' }
+  }), []);
+
+  // Rest of the component remains the same as previous version
+  // (MemberNode, HierarchyTree, and JSX structure)
+
+  const getSocialIcon = (platform) => {
+    switch (platform) {
+      case 'github': return <GithubIcon className="w-5 h-5" />;
+      case 'linkedin': return <Linkedin className="w-5 h-5" />;
+      case 'twitter': return <Twitter className="w-5 h-5" />;
+      case 'portfolio': return <ExternalLink className="w-5 h-5" />;
+      default: return <ExternalLink className="w-5 h-5" />;
+    }
+  };
+
+  const MemberNode = ({ member, depth = 0 }) => {
+    const theme = roleThemes[member.role] || { bg: 'from-gray-500 to-gray-400', border: 'border-gray-400' };
+
+    return (
+      <div className="relative ml-8 pl-4">
+        {depth > 0 && (
+          <div className="absolute w-0.5 h-full bg-gradient-to-b from-gray-200 to-transparent left-0 top-4" />
+        )}
+
+        <div className={`relative group p-4 rounded-2xl backdrop-blur-lg bg-white/50 shadow-sm hover:shadow-lg 
+          transition-all duration-300 border-l-4 ${theme.border} hover:bg-white/80`}>
+
+          <div className="flex items-start gap-4">
+            <div className={`p-3 rounded-xl bg-gradient-to-br ${theme.bg} 
+              shadow-lg mt-1 flex-shrink-0`}>
+              <User className="w-12 h-12 text-white" />
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <h3 className="text-xl font-bold text-gray-800 mb-1">{member.name}</h3>
+              <div className="flex items-center gap-2 mb-3">
+                <span className={`px-3 py-1 rounded-full text-sm font-semibold 
+                  bg-gradient-to-br ${theme.bg} text-white`}>
+                  {member.role}
+                </span>
+                {member.email !== 'NA' && (
+                  <a href={`mailto:${member.email}`} className="text-gray-500 hover:text-blue-600">
+                    <Mail className="w-5 h-5" />
+                  </a>
+                )}
+              </div>
+
+              {member.socials?.length > 0 && (
+                <div className="flex gap-3">
+                  {member.socials.map((social, idx) => (
+                    <a key={idx} href={social.link} target="_blank" rel="noopener noreferrer"
+                      className="p-2 rounded-full bg-white shadow-sm hover:shadow-md 
+                        hover:-translate-y-0.5 transition-all duration-200">
+                      {getSocialIcon(social.platform)}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {member.bio !== 'NA' && (
+            <>
+
+              {member.bio !== 'NA' && (
+                <p className="mt-2 pl-1 text-gray-600 text-sm animate-slideDown">
+                  {member.bio}
+                </p>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const HierarchyTree = ({ members, depth = 0 }) => {
+    const grouped = useMemo(() => members.reduce((acc, member) => {
+      const role = member.role;
+      if (!acc[role]) acc[role] = [];
+      acc[role].push(member);
+      return acc;
+    }, {}), [members]);
+
+    const sortedRoles = useMemo(() =>
+      Object.entries(grouped).sort((a, b) =>
+        getPriority(a[0]) - getPriority(b[0])
+      ), [grouped, getPriority]
+    );
+
+    return (
+      <div className="space-y-6">
+        {sortedRoles.map(([role, members]) => (
+          <div key={role} className="relative">
+            <div className="flex items-center mb-4 ml-8">
+              <div className={`absolute left-0 w-0.5 h-full bg-gradient-to-b ${roleThemes[role]?.border ? `from-${roleThemes[role].border.replace('border-', '')} to-${roleThemes[role].border.replace('border-', '')}-200` : 'from-gray-300 to-gray-100'
+                }`} />
+              <h3 className="text-2xl font-bold text-gray-800 bg-white/80 px-4 py-2 
+                rounded-xl shadow-sm inline-block">
+                {role}
+              </h3>
+            </div>
+
+            <div className="space-y-8">
+              {members.map((member, idx) => (
+                <MemberNode key={idx} member={member} depth={depth + 1} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   return (
-    <>
-      <div className="items-center p-2 scale-95 lg:p-5">
-        <h2 className="text-2xl/[0] font-semibold mb-10 text-center">
-          Core Team
-        </h2>
-        <div className="flex flex-col items-center sm:flex-row sm:flex-wrap sm:justify-center gap-7">
-          {coreTeam.map((member, index) => (
-            <MembersCard key={index} {...member} />
-          ))}
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4 animate-fadeIn">
+            Code Squad: Where Innovation Meets Collaboration
+          </h1>
+          <p className="text-xl text-gray-600 mb-6">
+            A vibrant community of tech enthusiasts, innovators, and problem-solvers dedicated to pushing the boundaries of technology and fostering excellence in technical education.
+          </p>
+          <div className="inline-flex items-center gap-2 px-6 py-2 bg-white/80 
+            rounded-full shadow-sm border border-gray-200">
+            <Users className="w-5 h-5 text-purple-600" />
+            <p className="text-gray-700 font-medium">
+              <span className='animate-pulse font-bold'>
+                {allMembers.length}</span> {" "}
+              Passionate Individuals Building the Future
+            </p>
+          </div>
+        </div>
+
+        <div className="relative bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl p-8 
+          border border-gray-200/60">
+          <HierarchyTree members={allMembers} />
+
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+            <div className="absolute -top-8 -right-8 w-32 h-32 bg-purple-100/40 rounded-full blur-2xl" />
+            <div className="absolute -bottom-8 -left-8 w-48 h-48 bg-indigo-100/40 rounded-full blur-2xl" />
+          </div>
         </div>
       </div>
-
-      <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700" />
-
-      <div className="items-center p-2 scale-95 lg:p-5">
-        <h2 className="text-2xl/[0] font-semibold mb-10 text-center border-b-1 border-b-black">
-          Contributors
-        </h2>
-        <div className="flex flex-col items-center sm:flex-row sm:flex-wrap sm:justify-center gap-7">
-          {contributors.map((member, index) => (
-            <MembersCard key={index} {...member} />
-          ))}
-        </div>
-      </div>
-      <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700" />
-
-      <div className="items-center p-2 scale-95 lg:p-5">
-        <h2 className="text-2xl/[0] font-semibold mb-10 text-center">
-          Social Media Outreach
-        </h2>
-        <div className="flex flex-col items-center sm:flex-row sm:flex-wrap sm:justify-center gap-7">
-          {socialMediaOutreach.map((member, index) => (
-            <MembersCard key={index} {...member} />
-          ))}
-        </div>
-      </div>
-    </>
+    </div>
   );
 };
 
-export default MembersPage;
+export default ModernTeamHierarchy;

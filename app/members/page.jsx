@@ -146,19 +146,24 @@ const ModernTeamHierarchy = () => {
   }, []);
 
   const roleThemes = useMemo(() => ({
-    'President': { bg: 'from-purple-600 to-indigo-600', border: 'border-purple-400' },
-    'Ignite Startup Club Lead': { bg: 'from-blue-600 to-cyan-500', border: 'border-blue-400' },
-    'Cyber Security Club Lead': { bg: 'from-red-600 to-pink-500', border: 'border-red-400' },
-    'Research Club Lead': { bg: 'from-green-600 to-emerald-500', border: 'border-green-400' },
-    'Gate Club Lead': { bg: 'from-teal-600 to-sky-500', border: 'border-teal-400' },
-    'B-Tech Member': { bg: 'from-sky-600 to-cyan-400', border: 'border-sky-400' },
-    'M-Tech Member': { bg: 'from-orange-600 to-amber-500', border: 'border-orange-400' }
+    'President':                { bg: 'bg-orange-600/80', border: 'border-orange-400' },
+    'Ignite Startup Club Lead': { bg: 'bg-yellow-600/80', border: 'border-yellow-400' },
+    'Cyber Security Club Lead': { bg: 'bg-red-600/80',    border: 'border-red-400' },
+    'Research Club Lead':       { bg: 'bg-green-600/80',  border: 'border-green-400' },
+    'Gate Club Lead':           { bg: 'bg-teal-600/80',   border: 'border-teal-400' },
+    'B-Tech Member':            { bg: 'bg-sky-600/80',    border: 'border-sky-400' },
+    'M-Tech Member':            { bg: 'bg-purple-600/80', border: 'border-purple-400' },
   }), []);
+  
+  
 
-  // Rest of the component remains the same as previous version
-  // (MemberNode, HierarchyTree, and JSX structure)
-
-  const getSocialIcon = (platform) => {
+/*************  ✨ Codeium Command ⭐  *************/
+  /**
+   * Returns the appropriate icon for the given social media platform.
+   * @param {string} platform - The platform name
+   * @returns {ReactElement} The icon
+   */
+/******  5a536367-9528-4eaa-9bf7-84da170b64a6  *******/  const getSocialIcon = (platform) => {
     switch (platform) {
       case 'github': return <GithubIcon className="w-5 h-5" />;
       case 'linkedin': return <Linkedin className="w-5 h-5" />;
@@ -169,28 +174,26 @@ const ModernTeamHierarchy = () => {
   };
 
   const MemberNode = ({ member, depth = 0 }) => {
-    const theme = roleThemes[member.role] || { bg: 'from-gray-500 to-gray-400', border: 'border-gray-400' };
+    const theme = roleThemes[member.role] || { bg: 'from-gray-600 to-gray-500', border: 'border-gray-400' };
 
     return (
-      <div className="relative ml-8 pl-4">
-        {depth > 0 && (
-          <div className="absolute w-0.5 h-full bg-gradient-to-b from-gray-200 to-transparent left-0 top-4" />
-        )}
+      <div className="relative ml-8 ">
+    
 
-        <div className={`relative group p-4 rounded-2xl backdrop-blur-lg bg-white/50 shadow-sm hover:shadow-lg 
-          transition-all duration-300 border-l-4 ${theme.border} hover:bg-white/80`}>
+        <div className={`relative group p-4 border-2 border-black rounded-none backdrop-blur-lg bg-orange-50/80 shadow-sm hover:shadow-lg 
+          transition-all duration-300 border-l-8 ${theme.border} hover:bg-orange-50`}>
 
           <div className="flex items-start gap-4">
-            <div className={`p-3 rounded-xl bg-gradient-to-br ${theme.bg} 
-              shadow-lg mt-1 flex-shrink-0`}>
+            <div className={`p-3 ${theme.bg} 
+              shadow-lg mt-1 flex-shrink-0 border-2 border-black`}>
               <User className="w-12 h-12 text-white" />
             </div>
 
             <div className="flex-1 min-w-0">
-              <h3 className="text-xl font-bold text-gray-800 mb-1">{member.name}</h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-1 font-mono">{member.name}</h3>
               <div className="flex items-center gap-2 mb-3">
-                <span className={`px-3 py-1 rounded-full text-sm font-semibold 
-                  bg-gradient-to-br ${theme.bg} text-white`}>
+                <span className={`px-3 py-1 rounded-full text-xs font-semibold 
+                   ${theme.bg} text-white border-2 border-black/30`}>
                   {member.role}
                 </span>
                 {member.email !== 'NA' && (
@@ -204,7 +207,7 @@ const ModernTeamHierarchy = () => {
                 <div className="flex gap-3">
                   {member.socials.map((social, idx) => (
                     <a key={idx} href={social.link} target="_blank" rel="noopener noreferrer"
-                      className="p-2 rounded-full bg-white shadow-sm hover:shadow-md 
+                      className="p-2 rounded-full bg-orange-50 border-2 border-black shadow-sm hover:shadow-md 
                         hover:-translate-y-0.5 transition-all duration-200">
                       {getSocialIcon(social.platform)}
                     </a>
@@ -215,14 +218,9 @@ const ModernTeamHierarchy = () => {
           </div>
 
           {member.bio !== 'NA' && (
-            <>
-
-              {member.bio !== 'NA' && (
-                <p className="mt-2 pl-1 text-gray-600 text-sm animate-slideDown">
-                  {member.bio}
-                </p>
-              )}
-            </>
+            <p className="mt-2 pl-1 text-gray-600 text-sm font-mono">
+              {member.bio}
+            </p>
           )}
         </div>
       </div>
@@ -248,10 +246,9 @@ const ModernTeamHierarchy = () => {
         {sortedRoles.map(([role, members]) => (
           <div key={role} className="relative">
             <div className="flex items-center mb-4 ml-8">
-              <div className={`absolute left-0 w-0.5 h-full bg-gradient-to-b ${roleThemes[role]?.border ? `from-${roleThemes[role].border.replace('border-', '')} to-${roleThemes[role].border.replace('border-', '')}-200` : 'from-gray-300 to-gray-100'
-                }`} />
-              <h3 className="text-2xl font-bold text-gray-800 bg-white/80 px-4 py-2 
-                rounded-xl shadow-sm inline-block">
+  
+              <h3 className="text-2xl font-bold text-gray-800 bg-primary px-4 py-2 
+                rounded-none inline-block border-2 border-black/30 font-mono">
                 {role}
               </h3>
             </div>
@@ -268,19 +265,19 @@ const ModernTeamHierarchy = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-emerald-50 py-12 px-4 sm:px-6 lg:px-8 ">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4 animate-fadeIn">
-            Code Squad: Where Innovation Meets Collaboration
+        <div className="text-center mb-16 border-2 border-black p-8 bg-orange-50">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4 font-mono">
+            Welcome to our Members Page
           </h1>
-          <p className="text-xl text-gray-600 mb-6">
-            A vibrant community of tech enthusiasts, innovators, and problem-solvers dedicated to pushing the boundaries of technology and fostering excellence in technical education.
+          <p className="text-xl text-gray-600 mb-6 font-mono">
+          Here, you’ll find everyone who keeps our community thriving—led by the President, guided by Club Leads, and supported by passionate members.
           </p>
-          <div className="inline-flex items-center gap-2 px-6 py-2 bg-white/80 
-            rounded-full shadow-sm border border-gray-200">
-            <Users className="w-5 h-5 text-purple-600" />
-            <p className="text-gray-700 font-medium">
+          <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent/30
+            rounded-none shadow-sm border-2 border-black">
+            <Users className="w-5 h-5 text-black" />
+            <p className="text-gray-700 font-medium font-mono">
               <span className='animate-pulse font-bold'>
                 {allMembers.length}</span> {" "}
               Passionate Individuals Building the Future
@@ -288,13 +285,13 @@ const ModernTeamHierarchy = () => {
           </div>
         </div>
 
-        <div className="relative bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl p-8 
-          border border-gray-200/60">
+        <div className="relative  backdrop-blur-lg rounded-none  py-8 
+          ">
           <HierarchyTree members={allMembers} />
 
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-            <div className="absolute -top-8 -right-8 w-32 h-32 bg-purple-100/40 rounded-full blur-2xl" />
-            <div className="absolute -bottom-8 -left-8 w-48 h-48 bg-indigo-100/40 rounded-full blur-2xl" />
+            <div className="absolute -top-8 -right-8 w-32 h-32 bg-orange-100/40 rounded-full blur-2xl" />
+            <div className="absolute -bottom-8 -left-8 w-48 h-48 bg-emerald-100/40 rounded-full blur-2xl" />
           </div>
         </div>
       </div>

@@ -7,40 +7,40 @@ const Gallery = () => {
       id: 1,
       image: "/images/events/th.jpg",
       title: "Treasure Hunt",
-      date: "12/03/2024",
+      date: "24/03/2025",
       description: "Solve cybersecurity challenges and uncover clues!"
     },
     {
       id: 2,
       image: "/Coding.svg",
       title: "Debugging Battle",
-      date: "12/03/2024",
+      date: "24/03/2025",
       description: " Sharpen your coding skills with precision."
     },
     {
       id: 3,
       image: "/images/events/quiz.svg",
       title: "Tech Quiz",
-      date: "12/03/2024",
+      date: "24/03/2025",
       description: "Test your knowledge and compete with the best!"
     },
     {
       id: 4,
       image: "/Lab.png",
       title: "Logo Design Contest",
-      date: "12/03/2024",
+      date: "24/03/2025",
       description: "Showcase your creativity in cybersecurity branding."
     },
     {
       id: 5,
       image: "/Gaming.jpg",
-      date: "12/03/2024",
+      date: "24/03/2025",
       description: "Strategize and battle it out!"
     },
     {
       id: 6,
       image: "/Sun.jpg",
-      date: "12/03/2024",
+      date: "24/03/2025",
       description: "Gain hands-on industry experience."
     }
 

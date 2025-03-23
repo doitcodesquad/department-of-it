@@ -121,7 +121,7 @@ const LandingPage = () => {
   return (
     <>
       <div className="relative w-screen h-screen bg-emerald-50 text-center  ">
-      <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full"></canvas>
+        <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full"></canvas>
         <div className="relative flex flex-col gap-24 items-center justify-between h-full w-full md:px-24">
           <div className="mt-[11rem]">
             <h1 className="text-[3rem] md:text-9xl font-black mb-8">
@@ -131,7 +131,7 @@ const LandingPage = () => {
               Uniting Creativity and Code, Powering Innovation
             </p>
             <Link href="/register" className="register-button  px-24 py-3">
-            Join Us
+              Join Us
             </Link>
           </div>
           <div className="flex flex-col items-center justify-center -translate-y-[14.42rem] md:translate-y-0">
@@ -166,6 +166,16 @@ const LandingPage = () => {
             </div>
           ))}
         </div>
+        <div className='flex gap-2 fixed bottom-0 right-3 p-1 rounded-md '>
+          <span className='font-semibold'>
+            Website by 
+          </span>
+          <a href="https://github.com/Naveed-SNR" className="hover:-translate-y-1 duration-100">Naveed</a>
+          <a href="https://github.com/TAWSEEFSHAMIM" className="hover:-translate-y-1 duration-100">Tawseef</a>
+          <a href="https://github.com/devdaim6" className="hover:-translate-y-1 duration-100">Daim</a>
+          <a href="https://github.com/mikhlas99" className="hover:-translate-y-1 duration-100">Ikhlas</a>
+
+          </div>
       </div>
     </>
   );

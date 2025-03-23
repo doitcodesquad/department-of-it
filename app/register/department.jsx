@@ -6,27 +6,44 @@ import { motion } from 'framer-motion';
 
 const Department = ({ onNext, onPrevious, data, isLastStep }) => {
   const [formData, setFormData] = useState(data || {
+    degree: '',
     department: '',
     semester: '',
     isOutsider: false,
     university: '',
   });
+
+  const degrees = [
+    'Btech cse',
+    'Btech IT',
+    'BSc Mathematics',
+    'BA Law',
+    'BSc Physical Education'
+  ];
+
+  const departments = [
+    { name: 'Information Technology', value: 'IT' },
+    { name: 'Mathematics', value: 'Maths' },
+    { name: 'Law', value: 'Law' },
+    { name: 'Biotechnology', value: 'Biotechnology' },
+    { name: 'Other', value: 'Other' }
+  ];
+
   const [universities, setUniversities] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const departments = [
-    'Mathematics', 'Law', 'Physical Education', 'Information Technology', 
-    'Biotechnology', 'Religious Studies', 'Communication & Journalism', 
-    'Commerce', 'Tourism Studies Education', 'Other'
-  ];
+  const semesters = [
+    '1st Semester', '2nd Semester',
+    '3rd Semester', '4th Semester',
+    '5th Semester', '6th Semester',
+    '7th Semester', '8th Semester'];
 
-  const semesters = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
 
   useEffect(() => {
     if (searchTerm) {
       const timeoutId = setTimeout(() => {
         const mockUniversities = [
-          'Harvard University', 'Stanford University', 'MIT', 
+          'Harvard University', 'Stanford University', 'MIT',
           'University of Cambridge', 'University of Oxford'
         ].filter(uni => uni.toLowerCase().includes(searchTerm.toLowerCase()));
         setUniversities(mockUniversities);
@@ -61,6 +78,23 @@ const Department = ({ onNext, onPrevious, data, isLastStep }) => {
       <h2 className="text-center my-[4.89rem] md:mb-14 sm:max-mb-11">Department Registration</h2>
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto border-4 border-black bg-orange-50 p-4 md:p-6">
         <div className="mb-4">
+          <label className="block mb-2" htmlFor="degree">
+            Degree Program
+          </label>
+          <select
+            id="degree"
+            name="degree"
+            value={formData.degree}
+            onChange={handleChange}
+            className="w-full p-2 bg-emerald-50 text-gray-500 border-black border"
+          >
+            <option value="">Select Degree</option>
+            {degrees.map(degree => (
+              <option key={degree} value={degree}>{degree}</option>
+            ))}
+          </select>
+        </div>
+        <div className="mb-4">
           <label className="block mb-2" htmlFor="department">
             Department
           </label>
@@ -73,7 +107,7 @@ const Department = ({ onNext, onPrevious, data, isLastStep }) => {
           >
             <option value="">Select Department</option>
             {departments.map((dept) => (
-              <option key={dept} value={dept}>{dept}</option>
+              <option key={dept.value} value={dept.value}>{dept.name}</option>
             ))}
           </select>
         </div>
@@ -105,7 +139,7 @@ const Department = ({ onNext, onPrevious, data, isLastStep }) => {
               onChange={handleChange}
               className="mr-2 appearance-none w-2 h-2 border border-black rounded-full bg-emerald-50 checked:bg-black checked:border-transparent focus:outline-none"
             />
-            <span className="">Are you an outsider?</span>
+            <span className="">Would you like to volunteer in future events or workshops?</span>
           </label>
         </div>
 
@@ -152,7 +186,7 @@ const Department = ({ onNext, onPrevious, data, isLastStep }) => {
             onClick={onPrevious}
             className="flex items-center justify-center w-full bg-primary cursor-pointer py-2 px-2 sm:px-3 transition-all hover:bg-black hover:text-white duration-300 border-2 border-black group"
           >
-            <Icon 
+            <Icon
               icon="mdi:arrow-left"
               className="transition-colors duration-300 text-black group-hover:text-white text-lg"
               width="14"
@@ -167,7 +201,7 @@ const Department = ({ onNext, onPrevious, data, isLastStep }) => {
             <span className="text-[10px] sm:text-sm pr-1 sm:pr-3">
               {isLastStep ? 'Register' : 'Next'}
             </span>
-            <Icon 
+            <Icon
               icon="mdi:arrow-right"
               className="transition-colors duration-300 text-black group-hover:text-white text-lg"
               width="14"

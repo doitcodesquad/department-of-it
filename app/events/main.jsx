@@ -5,10 +5,10 @@ import React, { useEffect, useState} from 'react';
 
 const sampleEvent = {
   id: '1', // Unique event ID
-  name: 'Tech Fest II',
+  name: 'Cyber Concave 2025',
   description: `Innovate, Compete, and Celebrate, A New Beginning Awaits`,
-  date: '2024-08-01',
-  startTime: '2024-08-01T10:00:00',
+  date: '2025-03-24',
+  startTime: '10:00:00',
 };
 const Countdown = ({ targetDate }) => {
   const [timeLeft, setTimeLeft] = useState({});
@@ -77,13 +77,15 @@ export default function Main() {
               {sampleEvent.description}
             </div>
  
-              <button onClick={handleClick} className="mt-4  md:mt-8 w-full  md:w-1/2 px-11 py-1 bg-primary text-lg font-light border-2 border-black">
-                Register
-              </button>
-     
+              <a href="https://forms.gle/gkGfCpbDCzCUX1yb6">
+                <button onClick={handleClick} className="mt-4  md:mt-8 w-full  md:w-1/2 px-11 py-1 bg-primary text-lg font-light border-2 border-black hover:bg-black duration-300 hover:text-white hover:border-white/30">
+                  Register
+                </button>
+              </a>
+{/*      
               <div className=" flex justify-center items-center md:justify-start px-3 w-full md:w-max mt-[3.8rem] md:mt-32 text-orange-50 text-3xl md:text-[3rem] border border-primary/30 py-3 md:py-4 md:px-11">
                 <Countdown targetDate={event.startTime} />
-              </div>
+              </div> */}
           </div>
         </div>
       </div>

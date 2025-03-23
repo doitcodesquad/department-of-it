@@ -8,7 +8,7 @@ export default function page() {
     <>
     <Main/>
     <Upcoming/>
-    <Gallery/>
+    {/* <Gallery/> */}
 
     </>
     

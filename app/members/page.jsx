@@ -81,7 +81,7 @@ const ModernTeamHierarchy = () => {
         ]
       },
       {
-        name: "Mohd Ikhlas",
+        name: "Mohammad Ikhlas",
         email: "mohammadikhlas99@gmail.com",
         bio: "Software Developer",
         socials: [

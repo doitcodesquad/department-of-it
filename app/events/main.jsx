@@ -76,6 +76,9 @@ export default function Main() {
             <div className="text-orange-50/80 text-lg md:text-xl md:w-max my-2">
               {sampleEvent.description}
             </div>
+            <div className="text-orange-50/80 text-lg md:text-xl md:w-max my-2">
+              (25 - 26 March 2025)
+            </div>
  
               <a href="https://forms.gle/gkGfCpbDCzCUX1yb6">
                 <button onClick={handleClick} className="mt-4  md:mt-8 w-full  md:w-1/2 px-11 py-1 bg-primary text-lg font-light border-2 border-black hover:bg-black duration-300 hover:text-white hover:border-white/30">

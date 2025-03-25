@@ -166,3 +166,21 @@ h3 {
 .hide-scroll::-webkit-scrollbar {
   @apply hidden;
 }
+
+
+.highlight-typing {
+  position: relative;
+  animation: typingHighlight 2s infinite;
+}
+
+@keyframes typingHighlight {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+}

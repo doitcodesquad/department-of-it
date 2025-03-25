@@ -8,7 +8,7 @@ const Gallery = () => {
       title: "Debugging Competition",
       date: "25/03/2025",
       description: "A challenge to identify and fix vulnerabilities in code, enhancing secure coding skills.",
-      link: "https://forms.gle/gkGfCpbDCzCUX1yb6"
+      link: "/events/debugging-competition"
     },
     {
       id: 2,
@@ -16,7 +16,7 @@ const Gallery = () => {
       title: "Treasure Hunt",
       date: "25/03/2025",
       description: "An engaging activity where participants will follow clues, solve challenges, and decode hidden messages to reach the final prize.",
-      link: "https://forms.gle/gkGfCpbDCzCUX1yb6"
+      link: "https://th2025cuk.vercel.app/"
     },
     {
       id: 3,
@@ -56,11 +56,16 @@ const Gallery = () => {
     <section id="upcoming" className="mt-11 md:px-11 px-3 w-full h-full">
       <div className="pt-11 pb-24 md:py-32 bg-emerald-50 border-t-2 border-black">
         <div className="text-4xl font-bold text-center mb-12 text-black">
-           Events
+          Events
         </div>
         <div className="flex flex-wrap justify-center items-stretch gap-4 md:max-w-full p-2">
           {events.map((event) => (
-            <div key={event.id} className="w-96 flex flex-col p-3 bg-orange-50 border-2 border-black">
+            <div
+              key={event.id}
+              className={`w-96 flex flex-col p-3 bg-orange-50 border-2 border-black ${
+                event.id <= 3 ? 'highlight-typing' : ''
+              }`}
+            >
               <div className="w-full">
                 <Image
                   className="h-56 object-cover w-full"
@@ -78,7 +83,8 @@ const Gallery = () => {
                 </div>
                 <a href={event.link}>
                   <button className="px-11 py-1 bg-primary border-2 border-black hover:bg-black duration-300 hover:text-white">
-                    Register
+                  {event.title === "Debugging Competition" ? "Start Debugging" : 
+                     event.title === "Treasure Hunt" ? "Enter Key" : "Register"}
                   </button>
                 </a>
               </div>

@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image';
 
 const Gallery = () => {
@@ -8,7 +9,8 @@ const Gallery = () => {
       title: "Debugging Competition",
       date: "25/03/2025",
       description: "A challenge to identify and fix vulnerabilities in code, enhancing secure coding skills.",
-      link: "/events/debugging-competition"
+      link: "#", // Changed to "#" since it’s ended
+      ended: true, // Added flag to mark as ended
     },
     {
       id: 2,
@@ -16,7 +18,8 @@ const Gallery = () => {
       title: "Treasure Hunt",
       date: "25/03/2025",
       description: "An engaging activity where participants will follow clues, solve challenges, and decode hidden messages to reach the final prize.",
-      link: "https://th2025cuk.vercel.app/"
+      link: "#",
+      ended: true,
     },
     {
       id: 3,
@@ -24,7 +27,8 @@ const Gallery = () => {
       title: "Mock Interview",
       date: "25/03/2025",
       description: "A simulated job interview experience covering technical and HR rounds to prepare students for real-world hiring processes.",
-      link: "https://forms.gle/gkGfCpbDCzCUX1yb6"
+      link: "#",
+      ended: true,
     },
     {
       id: 4,
@@ -32,7 +36,8 @@ const Gallery = () => {
       title: "Gaming (BGMI)",
       date: "26/03/2025",
       description: "A BGMI tournament where teams compete, showcasing strategy, teamwork, and quick decision-making.",
-      link: "https://forms.gle/gkGfCpbDCzCUX1yb6"
+      link: "https://forms.gle/gkGfCpbDCzCUX1yb6",
+      ended: false,
     },
     {
       id: 5,
@@ -40,7 +45,8 @@ const Gallery = () => {
       title: "Quiz",
       date: "26/03/2025",
       description: "A knowledge-based competition testing participants on cybersecurity concepts, IT fundamentals, and general awareness.",
-      link: "https://forms.gle/gkGfCpbDCzCUX1yb6"
+      link: "https://cyber-concave-quiz.vercel.app/",
+      ended: false,
     },
     {
       id: 6,
@@ -48,9 +54,16 @@ const Gallery = () => {
       title: "Logo Designing",
       date: "26/03/2025",
       description: "A creative contest to design tech-related logos based on a given theme reflecting awareness and innovation.",
-      link: "https://forms.gle/gkGfCpbDCzCUX1yb6"
-    }
+      link: "https://forms.gle/gkGfCpbDCzCUX1yb6",
+      ended: false,
+    },
   ];
+
+  // Function to handle click on ended events
+  const handleEndedEventClick = (e) => {
+    e.preventDefault(); // Prevent link navigation
+    alert("This challenge has ended.");
+  };
 
   return (
     <section id="upcoming" className="mt-11 md:px-11 px-3 w-full h-full">
@@ -63,7 +76,7 @@ const Gallery = () => {
             <div
               key={event.id}
               className={`w-96 flex flex-col p-3 bg-orange-50 border-2 border-black ${
-                event.id <= 3 ? 'highlight-typing' : ''
+                event.id > 3 ? 'highlight-typing' : ''
               }`}
             >
               <div className="w-full">
@@ -81,10 +94,22 @@ const Gallery = () => {
                 <div className="bg-primary py-1 px-1">
                   {event.date}
                 </div>
-                <a href={event.link}>
-                  <button className="px-11 py-1 bg-primary border-2 border-black hover:bg-black duration-300 hover:text-white">
-                  {event.title === "Debugging Competition" ? "Start Debugging" : 
-                     event.title === "Treasure Hunt" ? "Enter Key" : "Register"}
+                <a href={event.link} onClick={event.ended ? handleEndedEventClick : null}>
+                  <button
+                    className={`px-11 py-1 bg-primary border-2 border-black hover:bg-black duration-300 hover:text-white ${
+                      event.ended ? 'opacity-50 cursor-not-allowed' : ''
+                    }`}
+                    disabled={event.ended} // Disable button for ended events
+                  >
+                    {event.ended
+                      ? "Ended" // Default for ended events
+                      : event.title === "Debugging Competition"
+                      ? "Start Debugging"
+                      : event.title === "Treasure Hunt"
+                      ? "Enter Key"
+                      : event.title === "Quiz"
+                      ? "Join Quiz" // Renamed from "Register"
+                      : "Register"}
                   </button>
                 </a>
               </div>

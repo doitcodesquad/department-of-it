@@ -22,23 +22,31 @@ const currentMembers = [
   {
     name: "Aneek",
     role: "Cyber Security Club Lead",
-    email: "NA",
+    email: "basheebilalwani@gmail.com",
     bio: "Cyber Security Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "http://github.com/aneekirfan" },
+      { platform: "linkedin", link: "http://linkedin.com/in/mohammad-aneek-79867124a" }
+    ]
   },
   {
     name: "Mujeeb",
     role: "Cyber Security Club Lead",
-    email: "NA",
+    email: "mujeebzargar7@gmail.com",
     bio: "Cyber Security Lead",
-    socials: []
+    socials: [
+      { platform: "linkedin", link: "https://www.linkedin.com/in/mujeeb-zargar-390964209" }
+    ]
   },
   {
     name: "Khalid",
     role: "App Development Club Lead",
     email: "NA",
     bio: "App Development Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/mirkhalid6005-ui" },
+      { platform: "linkedin", link: "http://linkedin.com/in/khalid-rashid-b4a88a386" }
+    ]
   },
   {
     name: "Khalil",
@@ -52,14 +60,20 @@ const currentMembers = [
     role: "Web Development Club Lead",
     email: "NA",
     bio: "Web Development Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/Duha-Shah" },
+      { platform: "linkedin", link: "https://www.linkedin.com/in/duha-shah-982b621b9" }
+    ]
   },
   {
     name: "Tayamun Zargar",
     role: "Web Development Club Lead",
-    email: "NA",
+    email: "zargartayamun@gmail.com",
     bio: "Web Development Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/TayamunTariq" },
+      { platform: "linkedin", link: "https://www.linkedin.com/in/tayamun-gojwari-a7085a272" }
+    ]
   },
   {
     name: "Amaan Parvez",
@@ -81,7 +95,9 @@ const currentMembers = [
     role: "Competitive Coding Club Lead",
     email: "NA",
     bio: "Competitive Coding Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "http://github.com/HakeemMohammadFahad" },
+    ]
   },
   {
     name: "Wani Wajid",
@@ -123,28 +139,40 @@ const currentMembers = [
     role: "Robotics Club Lead",
     email: "NA",
     bio: "Robotics Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/ahmadmustafa2004" },
+      { platform: "linkedin", link: "https://www.linkedin.com/in/ahmad-mustafa-464377249" }
+    ]
   },
   {
     name: "Saliq",
     role: "Robotics Club Lead",
     email: "NA",
     bio: "Robotics Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/Mohammad-Saliq" },
+      { platform: "linkedin", link: "https://www.linkedin.com/in/mohammad-saliq-514677260/" }
+    ]
   },
   {
     name: "Arbeena",
     role: "Gate Club Lead",
-    email: "NA",
+    email: "arbeenamushtaq29@gmail.com",
     bio: "Gate Startups Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/ArbeenaMushtaq" },
+      { platform: "linkedin", link: "https://in.linkedin.com/in/arbeena-mushtaq-a69b872b3" }
+    ]
   },
   {
     name: "Hamid Farooq",
     role: "Gate Club Lead",
-    email: "NA",
+    email: "hamidfarooq903@gmail.com",
     bio: "Gate Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/Hamidfarooq121" },
+      { platform: "linkedin", link: " https://www.linkedin.com/in/hamid-farooq777" }
+    ]
   },
 
   {
@@ -152,14 +180,20 @@ const currentMembers = [
     role: "Research Club Lead",
     email: "NA",
     bio: "Research Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/bhatwaqas111-stack" },
+      { platform: "linkedin", link: "https://www.linkedin.com/in/wikas-khursheed-08ba12247/" }
+    ]
   },
   {
     name: "Yawar",
     role: "Research Club Lead",
-    email: "NA",
+    email: "yawer1229@icloud.com",
     bio: "Research Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/yawer-1229" },
+      { platform: "linkedin", link: "https://www.linkedin.com/in/yawer-nazir-213576250" }
+    ]
   }, {
     name: "Ashmiya",
     role: "Innovative Startups Club Lead",
@@ -170,9 +204,12 @@ const currentMembers = [
   {
     name: "Muqeet",
     role: "Innovative Startups Club Lead",
-    email: "NA",
+    email: "abdulmuqeetzargar15@gmail.com",
     bio: "Innovative Startups Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/MuqeetZargar" },
+      { platform: "linkedin", link: "https://www.linkedin.com/in/abdul-muqeet-zargar-8204891aa" }
+    ]
   }
 
 ];
@@ -181,9 +218,12 @@ const organisers = [
   {
     name: "Amaan Parvez",
     role: "Organiser",
-    email: "NA",
+    email: "amaan.rather8004@gmail.com",
     bio: "Event Organiser",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/Amaan-Parvaiz-Rather" },
+      { platform: "linkedin", link: "https://www.linkedin.com/in/amaan-rather-6aba39290/" }
+    ]
   },
   {
     name: "Aneek",

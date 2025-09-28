@@ -240,10 +240,10 @@ const ContactForm = () => {
                       <span className="ml-3 text-lg font-medium">Email</span>
                       <br />
                       <Link
-                        href="mailto:codesquadcuk@gmail.com?subject=Contact Form CodeSquad"
+                        href="mailto:doitcodesquad@gmail.com?subject=Contact Form CodeSquad"
                         className="ml-3 text-sm text-secondary-100 md:text-base"
                       >
-                        codesquadcuk@gmail.com
+                        DoitCodeSquad@gmail.com
                       </Link>
                     </div>
                   </div>

@@ -47,12 +47,12 @@ export default function ClubDetails({ navigation }) {
     };
 
     const clubData = {
-        name: 'RESEARCH CLUB',
+        name: 'NETWORKING CLUB',
         memberCount: '30',
-        leader: 'Wikas Khursheed & Yawar',
+        leader: 'Amaan & Shoyfat',
         meetingDay: 'Tuesday',
         meetingTime: '21:00',
-        description: 'Welcome to the Research Club! Our mission is to cultivate a community of inquisitive minds passionate about exploring complex ideas and groundbreaking innovations. Whether you\'re an experienced researcher or just embarking on your academic journey, our club provides the perfect environment to expand your intellectual horizons. Engage in research seminars, collaborative projects, and workshops on advanced methodologies and data analysis. Present your findings, exchange ideas, and join a vibrant community that celebrates discovery, academic rigor, and continuous learning'
+        description: 'Welcome to the Networking Club! Our mission is to connect students with a passion for computer networks and communications. Whether you are interested in network design, security, or administration, our club provides a platform to learn, share, and grow. Join us for workshops on networking fundamentals, hands-on labs with Cisco Packet Tracer, and discussions on the latest industry trends. Collaborate with peers on real-world projects, prepare for industry certifications, and build a strong professional network.'
     }
     const terminalVariants = {
         offscreen: {

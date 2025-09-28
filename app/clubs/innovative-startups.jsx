@@ -47,12 +47,12 @@ export default function ClubDetails({ navigation }) {
     };
 
     const clubData = {
-        name: 'RESEARCH CLUB',
+        name: 'INNOVATIVE STARTUPS CLUB',
         memberCount: '30',
-        leader: 'Wikas Khursheed & Yawar',
+        leader: 'Ashmiya & Muqeet',
         meetingDay: 'Tuesday',
         meetingTime: '21:00',
-        description: 'Welcome to the Research Club! Our mission is to cultivate a community of inquisitive minds passionate about exploring complex ideas and groundbreaking innovations. Whether you\'re an experienced researcher or just embarking on your academic journey, our club provides the perfect environment to expand your intellectual horizons. Engage in research seminars, collaborative projects, and workshops on advanced methodologies and data analysis. Present your findings, exchange ideas, and join a vibrant community that celebrates discovery, academic rigor, and continuous learning'
+        description: 'Welcome to the Innovative Startups Club! Our mission is to inspire and support the next generation of entrepreneurs. We provide a dynamic environment for students to develop their business ideas, learn essential startup skills, and connect with mentors and investors. Join us for workshops on business planning, marketing, and fundraising. Participate in pitch competitions, networking events, and collaborative projects that will help you turn your vision into a successful venture.'
     }
     const terminalVariants = {
         offscreen: {

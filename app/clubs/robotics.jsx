@@ -47,12 +47,12 @@ export default function ClubDetails({ navigation }) {
     };
 
     const clubData = {
-        name: 'RESEARCH CLUB',
+        name: 'ROBOTICS CLUB',
         memberCount: '30',
-        leader: 'Wikas Khursheed & Yawar',
+        leader: 'Ahmad Mustafa & Saliq',
         meetingDay: 'Tuesday',
         meetingTime: '21:00',
-        description: 'Welcome to the Research Club! Our mission is to cultivate a community of inquisitive minds passionate about exploring complex ideas and groundbreaking innovations. Whether you\'re an experienced researcher or just embarking on your academic journey, our club provides the perfect environment to expand your intellectual horizons. Engage in research seminars, collaborative projects, and workshops on advanced methodologies and data analysis. Present your findings, exchange ideas, and join a vibrant community that celebrates discovery, academic rigor, and continuous learning'
+        description: 'Welcome to the Robotics Club! We are a community of builders, thinkers, and innovators passionate about robotics and automation. Our club provides a hands-on environment to learn about robot design, construction, and programming. Join us for workshops on electronics, mechanics, and software development for robotics. Collaborate on exciting projects, from autonomous vehicles to robotic arms, and compete in robotics competitions. Whether you are a beginner or an expert, you will find a supportive community to help you turn your ideas into reality.'
     }
     const terminalVariants = {
         offscreen: {

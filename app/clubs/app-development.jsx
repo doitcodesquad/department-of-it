@@ -4,7 +4,7 @@ import test from '/public/computer.svg'
 import { Icon } from '@iconify/react'
 import { motion, stagger } from 'framer-motion'
 import Skills from '../components/skills'
-export default function ClubDetails() {
+export default function ClubDetails({ navigation }) {
     const CodeEditorDescription = ({ description }) => {
         const [lines, setLines] = React.useState([]);
         const textRef = React.useRef(null);
@@ -47,12 +47,12 @@ export default function ClubDetails() {
     };
 
     const clubData = {
-        name: 'CYBERSECURITY CLUB',
+        name: 'APP DEVELOPMENT CLUB',
         memberCount: '30',
-        leader: 'Ayaan',
+        leader: 'Khalid & Khalil',
         meetingDay: 'Tuesday',
         meetingTime: '21:00',
-        description: 'Welcome to the CyberSecurity Club! Our mission is to build a community of vigilant and innovative security enthusiasts dedicated to safeguarding the digital world. Whether you\'re an experienced cybersecurity expert or new to the field, our club provides the ideal environment to enhance your skills and deepen your understanding of digital threats. Engage in hands-on challenges, ethical hacking workshops, and study sessions on threat analysis, network defense, and digital forensics. Collaborate on real-world projects, participate in capture-the-flag competitions, and join a vibrant community that celebrates cybersecurity excellence and continuous learning.'
+        description: 'Welcome to the App Development Club! We are a community of creators and problem-solvers who are passionate about building amazing mobile and web applications. Whether you are an experienced developer or a beginner, our club is the perfect place to learn, collaborate, and bring your ideas to life. Join us for workshops on the latest technologies, hackathons, and collaborative projects that will help you build a strong portfolio and prepare for a career in tech.'
     }
     const terminalVariants = {
         offscreen: {
@@ -105,20 +105,21 @@ export default function ClubDetails() {
 
     return (
        <>
-                   <div className="flex flex-wrap md:flex-nowrap mt-8 md:h-[83%] h-full w-full bg-emerald-50 md:border border-black relative overflow-hidden">
+                  <div className="md:flex justify-between items-stretch w-full mt-8 md:border md:border-b-0 border-black">
+                      <div className="w-full md:w-auto border-b border-t md:border-t-0 md:border-r border-black py-2 flex justify-center items-center text-lg md:text-xl flex-shrink-0">
+                          <div className="flex gap-3">
+                              <div className="flex items-center gap-1 w-max border-black/30 px-3">
+                                  <Icon icon="material-symbols:person" />
+                                  <p>{`${clubData.memberCount} Active Members`}</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div className="w-full md:flex-1 min-w-0">
+                          {navigation}
+                      </div>
+                  </div>
+                   <div className="flex flex-wrap md:flex-nowrap md:h-[83%] h-full w-full bg-emerald-50 md:border md:border-t-0 border-black relative overflow-hidden">
                        <div className="flex flex-col md:w-[62.3%]">
-                           <div className="w-full md:w-1/2 border-b border-t md:border-t-0 border-r border-black py-2 flex justify-center items-center text-lg md:text-xl">
-                               <div className="flex gap-3">
-                                   <div className="flex items-center gap-1 w-max border-black/30 px-3">
-                                       <Icon icon="material-symbols:person" />
-                                       <p>{`${clubData.memberCount} Active Members`}</p>
-                                   </div>
-                                   {/* <div className="flex items-center gap-1 w-max">
-                                           <Icon icon="material-symbols:social-leaderboard-outline" />
-                                           <p>Founded: 2018</p>
-                                       </div> */}
-                               </div>
-                           </div>
                            <div className="flex md:flex-row flex-wrap w-full h-full justify-center md:justify-between relative ">
                                <div className="flex flex-col md:px-14 md:ms-8 mt-3 p-3 text-[3rem] md:text-8xl w-full md:w-1/2 font-headline leading-tight">
                                    <div>

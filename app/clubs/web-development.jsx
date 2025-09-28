@@ -47,12 +47,12 @@ export default function ClubDetails({ navigation }) {
     };
 
     const clubData = {
-        name: 'RESEARCH CLUB',
+        name: 'WEB DEVELOPMENT CLUB',
         memberCount: '30',
-        leader: 'Wikas Khursheed & Yawar',
+        leader: 'Duha Shah & Tayamun Zargar',
         meetingDay: 'Tuesday',
         meetingTime: '21:00',
-        description: 'Welcome to the Research Club! Our mission is to cultivate a community of inquisitive minds passionate about exploring complex ideas and groundbreaking innovations. Whether you\'re an experienced researcher or just embarking on your academic journey, our club provides the perfect environment to expand your intellectual horizons. Engage in research seminars, collaborative projects, and workshops on advanced methodologies and data analysis. Present your findings, exchange ideas, and join a vibrant community that celebrates discovery, academic rigor, and continuous learning'
+        description: 'Welcome to the Web Development Club! Our mission is to empower students with the skills and knowledge to build beautiful and functional websites and web applications. Whether you are a beginner or an experienced developer, our club provides a collaborative environment to learn, grow, and create. Join us for workshops on HTML, CSS, JavaScript, and modern frameworks like React and Next.js. Participate in hackathons, build real-world projects, and connect with a community of passionate web developers.'
     }
     const terminalVariants = {
         offscreen: {

@@ -22,7 +22,7 @@ const currentMembers = [
   {
     name: "Aneek",
     role: "Cyber Security Club Lead",
-    email: "basheebilalwani@gmail.com",
+    email: "NA",
     bio: "Cyber Security Lead",
     socials: [
       { platform: "github", link: "http://github.com/aneekirfan" },
@@ -78,9 +78,12 @@ const currentMembers = [
   {
     name: "Amaan Parvez",
     role: "IoT Club Lead",
-    email: "NA",
+    email: "amaan.rather8004@gmail.com",
     bio: "IoT Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/Amaan-Parvaiz-Rather" },
+      { platform: "linkedin", link: "https://www.linkedin.com/in/amaan-rather-6aba39290/" }
+    ]
   },
   {
     name: "Mujtaba",
@@ -123,16 +126,22 @@ const currentMembers = [
   {
     name: "Bashee Bilal",
     role: "AI/ML Club Lead",
-    email: "NA",
+    email: "basheebilalwani@gmail.com",
     bio: "AI/ML Club Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/basheebilalwani" },
+      { platform: "linkedin", link: " https://www.linkedin.com/in/bashee-bilal" }
+    ]
   },
   {
     name: "Mohammad Akeeb",
     role: "AI/ML Club Lead",
-    email: "NA",
+    email: "mohammadakeeb786@gmail.com",
     bio: "AI/ML Club Lead",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/mohmmad-akeeb" },
+      { platform: "linkedin", link: "https://www.linkedin.com/in/mohmmad-akeeb" }
+    ]
   },
   {
     name: "Ahmad Mustafa",
@@ -234,9 +243,12 @@ const organisers = [
   }, {
     name: "Bashee Bilal",
     role: "Organiser",
-    email: "NA",
+    email: "basheebilalwani@gmail.com",
     bio: "Event Organiser",
-    socials: []
+    socials: [
+      { platform: "github", link: "https://github.com/basheebilalwani" },
+      { platform: "linkedin", link: " https://www.linkedin.com/in/bashee-bilal" }
+    ]
   },
   {
     name: "Fahad",

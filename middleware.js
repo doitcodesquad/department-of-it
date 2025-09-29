@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
-import { logAccess } from "./utils/logAccess";
 
 export async function middleware(request) {
   const ip = request.ip || request.headers.get("x-forwarded-for") || "unknown";
@@ -21,14 +20,10 @@ export async function middleware(request) {
     req: request,
     secret: process.env.NEXTAUTH_SECRET,
   });
+
   if (!token) {
-    await logAccess(
-      "error",
-      "Unauthorized Access ",
-      method,
-      ip,
-      userAgent,
-      pathname
+    console.error(
+      `Unauthorized Access: Method=${method}, IP=${ip}, UserAgent=${userAgent}, Pathname=${pathname}`
     );
     return new NextResponse(
       JSON.stringify({ message: "Authentication required" }),
@@ -44,7 +39,10 @@ export async function middleware(request) {
       headers: requestHeaders,
     },
   });
-  await logAccess("info", "API Access", method, ip, userAgent, pathname);
+
+  console.log(
+    `API Access: Method=${method}, IP=${ip}, UserAgent=${userAgent}, Pathname=${pathname}`
+  );
 
   return response;
 }

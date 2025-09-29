@@ -1,12 +1,18 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import clientPromise from "@/lib/mongodb";
-import connectToDatabase from "@/lib/db";
-import Member from "@/models/Member";
+
+// Hardcoded user for demonstration
+const users = [
+  {
+    id: "1",
+    name: "Test User",
+    email: "test@example.com",
+    password: "password", // In a real app, this should be a hashed password
+    memberType: "admin",
+  },
+];
 
 export const authOptions = {
-  adapter: MongoDBAdapter(clientPromise),
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -15,25 +21,28 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        await connectToDatabase();
-
-        const user = await Member.findOne({ email: credentials.email });
-        if (!user) {
-          throw new Error("No user found with this email");
+        if (!credentials) {
+          return null;
         }
+        
+        const user = users.find(
+          (user) =>
+            user.email === credentials.email &&
+            user.password === credentials.password
+        );
 
-        const isValid = await user.comparePassword(credentials.password);
-
-        if (!isValid) {
-          throw new Error("Incorrect password");
+        if (user) {
+          // Return user object for the session
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            memberType: user.memberType,
+          };
         }
-
-        return {
-          id: user._id,
-          email: user.email,
-          name: user.name,
-          memberType: user.memberType,
-        };
+        
+        // Return null if user data could not be retrieved
+        return null;
       },
     }),
   ],
@@ -49,13 +58,15 @@ export const authOptions = {
       return token;
     },
     async session({ session, token }) {
-      session.user.id = token.id;
-      session.user.role = token.role;
+      if (session.user) {
+        session.user.id = token.id;
+        session.user.role = token.role;
+      }
       return session;
     },
   },
   pages: {
-    signIn: "/auth/signin",
+    signIn: "/login",
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

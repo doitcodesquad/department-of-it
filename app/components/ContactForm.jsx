@@ -49,21 +49,9 @@ const ContactForm = () => {
       });
     } else {
       setIsLoading(true);
-      try {
-        const response = await fetch("/api/contact", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            message,
-            image: image ? image : "",
-          }),
-        });
-        const data = await response.json();
-        console.log(data);
+      // Simulate form submission
+      setTimeout(() => {
+        setIsLoading(false);
         toast.success("Form submitted successfully!", {
           title: "Success",
           description: "Form has been submitted successfully!",
@@ -73,14 +61,8 @@ const ContactForm = () => {
         setEmail("");
         setMessage("");
         setImage(null);
-      } catch (error) {
-        console.error(error);
-        toast.error("An error occurred while submitting the form.", {
-          title: "Error",
-        });
-      } finally {
-        setIsLoading(false);
-      }
+        setErrors({});
+      }, 1000);
     }
   };
 
@@ -240,10 +222,10 @@ const ContactForm = () => {
                       <span className="ml-3 text-lg font-medium">Email</span>
                       <br />
                       <Link
-                        href="mailto:doitcodesquad@gmail.com?subject=Contact Form CodeSquad"
+                        href="mailto:codesquadcuk@gmail.com?subject=Contact Form CodeSquad"
                         className="ml-3 text-sm text-secondary-100 md:text-base"
                       >
-                        DoitCodeSquad@gmail.com
+                        codesquadcuk@gmail.com
                       </Link>
                     </div>
                   </div>

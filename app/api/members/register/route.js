@@ -1,61 +1,20 @@
-import dbConnect from "@/lib/db";
-import Member from "@/models/Member";
 import { NextResponse } from "next/server";
-import logger from "@/utils/logger";
+
 export async function POST(request) {
   try {
-    await dbConnect();
+    const { name, email } = await request.json();
 
-    const {
-      username,
-      name,
-      email,
-      password,
-      memberType,
-      isOutsider,
-      club,
-      college,
-      department,
-      programme,
-      course,
-      bio,
-      semester,
-      socials,
-    } = await request.json();
+    // Mock registration logic
+    console.log(`Member registration attempt for Name: ${name} & Email: ${email}`);
 
-    const memberExists = await Member.findOne({ email });
-    if (!memberExists) {
-      await Member.create({
-        username,
-        name,
-        email,
-        password,
-        memberType,
-        isOutsider,
-        club,
-        college,
-        department,
-        programme,
-        course,
-        bio,
-        socials,
-        semester,
-      });
-      await logger.info(
-        "Member created " + "Name : " + name + " & Email : " + email
-      );
-      return NextResponse.json({
-        message: "Successfully created Member",
-        status: 200,
-      });
-    }
-    await logger.info("Member Already Exists with Provided Email " + email);
+    // Assuming email is not already taken
     return NextResponse.json({
-      message: "Member Already Exists with provided Email",
-      status: 400,
+      message: "Successfully created Member",
+      status: 200,
     });
+
   } catch (error) {
-    await logger.error("Error creating member", { error: error.message });
+    console.error("Error creating member", { error: error.message });
     return NextResponse.json({
       message: "Failed to create member",
       status: 500,

@@ -1,18 +1,17 @@
 'use client'
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
-
+import Image from 'next/image';
 import { Icon } from '@iconify/react';
-import Image from 'next/image'
-import test from '/public/computer.svg'
-// import coding from '../../public/coding.svg'
-// import hero from '../../public/hacker.png'
+import test from '/public/computer.svg';
+import Gallery from './Gallery'; 
 
 const LandingPage = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
 
@@ -25,9 +24,9 @@ const LandingPage = () => {
     window.addEventListener('resize', resizeCanvas);
 
     const lines = [];
-    const numLines = 50; // Adjust number of lines
+    const numLines = 50;
     const speed = 2;
-    const centerBuffer = 200; // Buffer around center
+    const centerBuffer = 200;
 
     for (let i = 0; i < numLines; i++) {
       const angle = Math.random() * Math.PI * 2;
@@ -36,9 +35,9 @@ const LandingPage = () => {
         x: Math.cos(angle) * radius + canvas.width / 2,
         y: Math.sin(angle) * radius + canvas.height / 2,
         angle: angle,
-        length: Math.random() * 30 + 20, // Adjust line length
+        length: Math.random() * 30 + 20,
         speed: Math.random() * 2 + 1,
-        opacity: Math.random() * 0.3 + 0.1 // Lower opacity for subtleness
+        opacity: Math.random() * 0.3 + 0.1
       });
     }
 
@@ -51,7 +50,7 @@ const LandingPage = () => {
         const endX = line.x - Math.cos(line.angle) * line.length;
         const endY = line.y - Math.sin(line.angle) * line.length;
         ctx.lineTo(endX, endY);
-        ctx.strokeStyle = `rgba(0, 0, 0, ${line.opacity})`; // Adjust color to fit your theme
+        ctx.strokeStyle = `rgba(0, 0, 0, ${line.opacity})`;
         ctx.lineWidth = 1;
         ctx.stroke();
 
@@ -79,6 +78,7 @@ const LandingPage = () => {
     };
 
     animate();
+
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', resizeCanvas);
@@ -120,7 +120,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <div className="relative w-screen h-screen bg-emerald-50 text-center  ">
+      <div className="relative w-screen h-screen bg-emerald-50 text-center">
         <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full"></canvas>
         <div className="relative flex flex-col gap-24 items-center justify-between h-full w-full md:px-24">
           <div className="mt-[11rem]">
@@ -130,7 +130,7 @@ const LandingPage = () => {
             <p className="text-xl md:text-2xl mb-8">
               Uniting Creativity and Code, Powering Innovation
             </p>
-            <Link href="/register" className="register-button  px-24 py-3">
+            <Link href="/register" className="register-button px-24 py-3">
               Join Us
             </Link>
           </div>
@@ -140,18 +140,21 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+
       <div className="flex flex-col justify-center items-center mb-11 -translate-y-[14.42rem] md:translate-y-0">
         <div className="w-[21rem] h-[21rem] md:w-[30rem] md:h-[30rem] rounded-full border-2 border-black overflow-hidden">
           <Image
             src={test}
             alt="Competitive Coding Illustration"
             className="object-cover w-full h-full"
+            priority
           />
         </div>
         <div className="h-[14.42rem] border border-black"></div>
         <div className="w-3 h-3 bg-black rounded-full"></div>
       </div>
-      <div className="border-y-2 border-black md:px-40 p-3 md:p-[7.4rem]">
+
+      <div className="border-t-2 border-black md:px-40 p-3 md:p-[7.4rem]">
         <h1 className="text-4xl font-black text-center mb-11">
           FEATURES
         </h1>
@@ -161,21 +164,25 @@ const LandingPage = () => {
               <div className="flex w-fit justify-center p-3 rounded-full border border-black">
                 <Icon icon={feature.icon} className="text-4xl" />
               </div>
-              <h2 className="text-xl font-semibold mb-2">{feature.title}</h2>
+              <h2 className="text-xl font-semibold my-2">{feature.title}</h2>
               <p className="text-black/80">{feature.description}</p>
             </div>
           ))}
         </div>
-        <div className='flex gap-2 fixed bottom-0 right-3 p-1 rounded-md '>
-          <span className='font-semibold'>
-            Website by 
-          </span>
-          <a href="https://github.com/Naveed-SNR" className="hover:-translate-y-1 duration-100">Naveed</a>
-          <a href="https://github.com/TAWSEEFSHAMIM" className="hover:-translate-y-1 duration-100">Tawseef</a>
-          <a href="https://github.com/devdaim6" className="hover:-translate-y-1 duration-100">Daim</a>
-          <a href="https://github.com/mikhlas99" className="hover:-translate-y-1 duration-100">Ikhlas</a>
+      </div>
 
-          </div>
+      <div className="h-screen border-b-2 border-black">
+        <Gallery />
+      </div>
+
+      <div className='flex gap-2 fixed bottom-0 right-3 p-1 rounded-md '>
+        <span className='font-semibold'>
+          Website by
+        </span>
+        <a href="https://github.com/Naveed-SNR" className="hover:-translate-y-1 duration-100">Naveed</a>
+        <a href="https://github.com/TAWSEEFSHAMIM" className="hover:-translate-y-1 duration-100">Tawseef</a>
+        <a href="https://github.com/devdaim6" className="hover:-translate-y-1 duration-100">Daim</a>
+        <a href="https://github.com/mikhlas99" className="hover:-translate-y-1 duration-100">Ikhlas</a>
       </div>
     </>
   );

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import Image from 'next/image'
 import test from '/public/computer.svg'
+import CircularGallery from './Gallery'
 // import coding from '../../public/coding.svg'
 // import hero from '../../public/hacker.png'
 
@@ -166,6 +167,9 @@ const LandingPage = () => {
             </div>
           ))}
         </div>
+        <div style={{ height: '600px', position: 'relative' }}>
+  <CircularGallery bend={3} textColor="#ffffff" borderRadius={0.05} scrollEase={0.02}/>
+</div>
         <div className='flex gap-2 fixed bottom-0 right-3 p-1 rounded-md '>
           <span className='font-semibold'>
             Website by 

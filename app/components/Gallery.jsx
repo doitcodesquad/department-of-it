@@ -3,33 +3,54 @@ import { useGesture } from '@use-gesture/react';
 
 const DEFAULT_IMAGES = [
   {
-    src: 'https://images.unsplash.com/photo-1755331039789-7e5680e26e8f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    src: '/landingGallery/cyberConcave 1.jpeg',
     alt: 'Abstract art'
   },
   {
-    src: 'https://images.unsplash.com/photo-1755569309049-98410b94f66d?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Modern sculpture'
+    src: '/landingGallery/cyberConcave 2.jpeg',
+    alt: 'Abstract art'
   },
   {
-    src: 'https://images.unsplash.com/photo-1755497595318-7e5e3523854f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Digital artwork'
+    src: '/landingGallery/cyberConcave 3.jpeg',
+    alt: 'Abstract art'
   },
   {
-    src: 'https://images.unsplash.com/photo-1755353985163-c2a0fe5ac3d8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Contemporary art'
+    src: '/landingGallery/cyberConcave 4.jpeg',
+    alt: 'Abstract art'
   },
   {
-    src: 'https://images.unsplash.com/photo-1745965976680-d00be7dc0377?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Geometric pattern'
+    src: '/landingGallery/cyberConcave 5.jpeg',
+    alt: 'Abstract art'
   },
   {
-    src: 'https://images.unsplash.com/photo-1752588975228-21f44630bb3c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Textured surface'
+    src: '/landingGallery/cyberConcave 6.jpeg',
+    alt: 'Abstract art'
   },
   {
-    src: 'https://pbs.twimg.com/media/Gyla7NnXMAAXSo_?format=jpg&name=large',
-    alt: 'Social media image'
-  }
+    src: '/landingGallery/cyberConcave 7.jpeg',
+    alt: 'Abstract art'
+  },
+  {
+    src: '/landingGallery/cyberConcave 8.jpeg',
+    alt: 'Abstract art'
+  },
+  {
+    src: '/landingGallery/cyberConcave 9.jpeg',
+    alt: 'Abstract art'
+  },
+  {
+    src: '/landingGallery/cyberConcave 10.jpeg',
+    alt: 'Abstract art'
+  },
+  {
+    src: '/landingGallery/cyberConcave 11.jpeg',
+    alt: 'Abstract art'
+  },
+  {
+    src: '/landingGallery/cyberConcave 12.jpeg',
+    alt: 'Abstract art'
+  },
+
 ];
 
 const DEFAULTS = {
@@ -111,20 +132,20 @@ export default function DomeGallery({
   images = DEFAULT_IMAGES,
   fit = 0.5,
   fitBasis = 'auto',
-  minRadius =800,
+  minRadius = 800,
   maxRadius = Infinity,
   padFactor = 0.25,
   overlayBlurColor = 'rgba(0,0,0,0)',
   maxVerticalRotationDeg = DEFAULTS.maxVerticalRotationDeg,
   dragSensitivity = DEFAULTS.dragSensitivity,
   enlargeTransitionMs = DEFAULTS.enlargeTransitionMs,
-  segments = DEFAULTS.segments,
+  segments = 30,
   dragDampening = 2,
-  openedImageWidth = '400px',
+  openedImageWidth = '600px',
   openedImageHeight = '400px',
   imageBorderRadius = '30px',
   openedImageBorderRadius = '30px',
-  grayscale = true
+  grayscale = false
 }) {
   const rootRef = useRef(null);
   const mainRef = useRef(null);
@@ -756,7 +777,7 @@ export default function DomeGallery({
       >
         <main
           ref={mainRef}
-          className="absolute inset-0 grid place-items-center overflow-hidden select-none bg-transparent" 
+          className="absolute inset-0 grid place-items-center overflow-hidden select-none bg-transparent"
           style={{
             touchAction: 'none',
             WebkitUserSelect: 'none'
@@ -831,7 +852,7 @@ export default function DomeGallery({
             style={{
               WebkitMaskImage: `radial-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0) 90%)`,
               maskImage: `radial-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0) 90%)`,
-              backdropFilter: 'none' 
+              backdropFilter: 'none'
             }}
           />
 
@@ -857,8 +878,8 @@ export default function DomeGallery({
               ref={scrimRef}
               className="scrim absolute inset-0 z-10 pointer-events-none opacity-0 transition-opacity duration-500"
               style={{
-                background: 'rgba(0, 0, 0, 0)', 
-                backdropFilter: 'none' 
+                background: 'rgba(0, 0, 0, 0)',
+                backdropFilter: 'none'
               }}
             />
             <div

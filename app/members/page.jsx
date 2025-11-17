@@ -257,8 +257,6 @@ const organisers = [
     bio: "Event Organiser",
     socials: []
   }
-
-
 ];
 
 const exMembers = [
@@ -324,7 +322,7 @@ const SocialIcon = ({ platform }) => {
 };
 
 const MemberCard = ({ member, theme }) => (
-  <div className={`relative group p-4 border-2 border-black rounded-none backdrop-blur-lg bg-orange-50/80 shadow-sm hover:shadow-lg transition-all duration-300 border-l-8 ${theme.border} hover:bg-orange-50`}>
+  <div className={`relative group p-4 border-2 rounded-none backdrop-blur-lg bg-orange-50/80 shadow-sm hover:shadow-lg transition-all duration-300 border-l-8 ${theme.border} hover:bg-orange-50`}>
     <div className="flex items-start gap-4">
       <div className={`p-3 ${theme.bg} shadow-lg mt-1 flex-shrink-0 border-2 border-black`}>
         <User className="w-12 h-12 text-white" />
@@ -404,6 +402,7 @@ const ModernTeamHierarchy = () => {
     'Ex-Research Club Lead': { bg: 'bg-gray-500/80', border: 'border-gray-300' },
     'Ex-Gate Club Lead': { bg: 'bg-gray-500/80', border: 'border-gray-300' },
     'Ex-Ignite Startup Club Lead': { bg: 'bg-gray-500/80', border: 'border-gray-300' },
+    'default': { bg: 'bg-gray-600/80', border: 'border-gray-400' }
   }), []);
 
 
@@ -432,7 +431,12 @@ const ModernTeamHierarchy = () => {
             </div>
             <div className="space-y-8">
               {roleMembers.map((member, idx) => (
-                <MemberCard key={idx} member={member} theme={roleThemes[member.role] || { bg: 'from-gray-600 to-gray-500', border: 'border-gray-400' }} />
+                <MemberCard 
+                  key={idx} 
+                  member={member} 
+                  // Use the default theme as a fallback
+                  theme={roleThemes[member.role] || roleThemes['default']} 
+                />
               ))}
             </div>
           </div>

@@ -175,6 +175,13 @@ const LandingPage = () => {
         <Gallery />
       </div>
 
+      <div className='flex gap-2 fixed bottom-0 left-3 p-1 rounded-md '>
+        <span className='font-semibold'>
+          Maintainer
+        </span>
+        <a href="https://m4milaad.github.io/" className="hover:-translate-y-1 duration-100">Milad</a>
+      </div>
+
       <div className='flex gap-2 fixed bottom-0 right-3 p-1 rounded-md '>
         <span className='font-semibold'>
           Website by

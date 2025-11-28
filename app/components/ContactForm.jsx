@@ -222,10 +222,10 @@ const ContactForm = () => {
                       <span className="ml-3 text-lg font-medium">Email</span>
                       <br />
                       <Link
-                        href="mailto:codesquadcuk@gmail.com?subject=Contact Form CodeSquad"
+                        href="mailto:doitcodesquad@gmail.com?subject=Contact Form CodeSquad"
                         className="ml-3 text-sm text-secondary-100 md:text-base"
                       >
-                        codesquadcuk@gmail.com
+                        doitcodesquad@gmail.com
                       </Link>
                     </div>
                   </div>
@@ -237,10 +237,10 @@ const ContactForm = () => {
                       </span>
                       <br />
                       <Link
-                        href="tel:7006771144"
+                        href="tel:8899108592"
                         className="ml-3 text-sm text-secondary-100 md:text-base"
                       >
-                        +91 7006771144
+                        +91 88991 08592
                       </Link>
                     </div>
                   </div>

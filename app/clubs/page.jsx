@@ -7,6 +7,7 @@ export default function ClubsPage() {
   const [ActiveClub, setActiveClub] = useState(null);
 
   const clubs = [
+    // { id: 'open-source', name: 'Open Source' }, // Hidden from navigation - page still exists in source
     { id: 'coding', name: 'Competitive Coding' },
     { id: 'cyber-security', name: 'Cyber Security' },
     { id: 'app-development', name: 'App Development' },

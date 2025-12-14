@@ -177,8 +177,9 @@ const LandingPage = () => {
 
       <div className='flex gap-2 fixed bottom-0 left-3 p-1 rounded-md '>
         <span className='font-semibold'>
-          Maintainer
+          Maintainers
         </span>
+        <a href="https://nimrawani.vercel.app/" className="hover:-translate-y-1 duration-100">Nimra</a>
         <a href="https://m4milaad.github.io/" className="hover:-translate-y-1 duration-100">Milad</a>
       </div>
 
